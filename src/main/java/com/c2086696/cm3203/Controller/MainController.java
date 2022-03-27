@@ -18,6 +18,26 @@ public class MainController {
         return"login";
     }
 
+    @GetMapping("/signin")
+    public String signin(){
+        return"signIn";
+    }
+
+    @GetMapping("/hello")
+    public String hello(){
+        return"hello";
+    }
+
+    @GetMapping("/home")
+    public String home(){
+        return"home";
+    }
+
+    @GetMapping("/welcome")
+    public String wlecome(){
+        return"welcome";
+    }
+
     @GetMapping(path="/all")
     public @ResponseBody Iterable<User> getAllUsers() {
         // This returns a JSON or XML with the users

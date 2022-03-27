@@ -1,0 +1,15 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: gainsboro;
+}
+
+.form-signin {
+    max-width: 300px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+.form-signin .inputBox {
+    position: relative;
+    padding: 10px;
+}

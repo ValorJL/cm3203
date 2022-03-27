@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="usual.css">
+</head>
+<body>
+<div id="topbar" class="top-bar">
+    <p style="font-size:16px">Welcome:-) Let's see what everyone has shared today!</p>
+</div>
+<div id="main" class="main">
+    <div id="side" class="side">
+        <ul class="menu">
+            <li><a th:href="@{/home}">Home Page</a></li>
+            <li><a th:href="@{/profile}">My Profile</a></li>
+            <li><a th:href="@{/account}">My Account</a></li>
+            <li><a th:href="@{/new-article}">New Article</a></li>
+            <li><a th:href="@{/management}">Management</a></li>
+            <li><a th:href="@{/signin}">Log out</a></li>
+        </ul>
+    </div>
+    <div id="content" class="content">
+        <br>
+        <div class="post">aaaaaa</div>
+        <div class="post">aaaaaa</div>
+        <div class="post">aaaaaa</div>
+        <div class="post">aaaaaa</div>
+        <div class="end-reading">--- Here's the whole contents already ---</div>
+        <br>
+    </div>
+</div>
+</body>
+</html>
