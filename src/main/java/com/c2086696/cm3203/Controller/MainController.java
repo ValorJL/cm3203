@@ -20,7 +20,7 @@ public class MainController {
 
     @GetMapping("/signin")
     public String signin(){
-        return"signIn";
+        return "sign-in";
     }
 
     @GetMapping("/hello")
@@ -36,6 +36,16 @@ public class MainController {
     @GetMapping("/welcome")
     public String wlecome(){
         return"welcome";
+    }
+
+    @GetMapping("/new-article")
+    public String newArticle(){
+        return"new-article";
+    }
+
+    @GetMapping("/01")
+    public String test(){
+        return"test01";
     }
 
     @GetMapping(path="/all")

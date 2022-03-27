@@ -1,5 +1,6 @@
 body{
     margin: 0px;
+    height: 100%;
 }
 
 ul li{
@@ -82,8 +83,10 @@ a{
     width: 85%;
     height: 100%;
     background-color:grey;
+    background: url("pic/background1.jpg");
     align-content: center;
     min-width: 800px;
+    min-height: 800px;
     text-align: center;
 }
 
@@ -96,9 +99,23 @@ a{
     margin-top: 5%;
     margin-bottom: 5%;
     min-width: 600px;
+    max-width: 1200px;
+    opacity: 80%;
 }
 
 .end-reading{
     margin-top: 5%;
     margin-bottom: 5%;
+}
+.title-input{
+    position: relative;
+    padding: 10px;
+    min-height: 10%;
+    min-width: 80%;
+}
+.content-input{
+    position: relative;
+    padding: 10px;
+    min-height: 500px;
+    min-width: 80%;
 }

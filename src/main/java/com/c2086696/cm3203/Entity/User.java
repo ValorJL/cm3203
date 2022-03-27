@@ -2,14 +2,11 @@ package com.c2086696.cm3203.Entity;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity // This tells Hibernate to make a table out of this class
-@ControllerAdvice
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class User{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

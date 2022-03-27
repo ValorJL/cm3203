@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>New Article</title>
     <link rel="stylesheet" href="usual.css">
 </head>
 <body>
@@ -21,12 +21,21 @@
         </ul>
     </div>
     <div id="content" class="content">
-        <br>
-        <div class="post">aaaaaa</div>
-        <div class="post">aaaaaa</div>
-        <div class="post">aaaaaa</div>
-        <div class="post">aaaaaa</div>
-        <div class="end-reading">--- Here's the whole contents already ---</div>
+        <br><br>
+        <form class="form-new-artcle" method="post" action="/add-article">
+            <div class="new-artcle">
+                <p>
+                    <label for="new-artcle-title">Title</label><br>
+                    <input type="text" id="new-artcle-title" name="new-artcle-title" class="title-input" autofocus>
+                </p>
+                <p>
+                    <label for="new-artcle-content">Content</label><br>
+                    <textarea type="text" id="new-artcle-content" name="new-artcle-content" class="content-input" required> </textarea>
+                </p>
+                <button type="submit">Submit</button>
+            </div>
+
+        </form>
         <br>
     </div>
 </div>
