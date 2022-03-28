@@ -3,28 +3,34 @@ package com.c2086696.cm3203.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "article", uniqueConstraints = @UniqueConstraint(columnNames = "Aid"))
+@Table(name = "article", uniqueConstraints = @UniqueConstraint(columnNames = "aid"))
 public class Article {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer Aid;
+    @Column(name = "aid")
+    private Integer aid;
 
+    @Column(name = "title")
     private String title;
 
-    private Integer postBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user.userName")
+    private User postBy;
 
+    @Column(name = "content",columnDefinition = "TEXT")
     private String content;
 
+    @Column(name = "like")
     private Integer like;
 
 
     public Integer getAid() {
-        return Aid;
+        return aid;
     }
 
     public void setAid(Integer aid) {
-        Aid = aid;
+        this.aid = aid;
     }
 
     public String getTitle() {
@@ -35,11 +41,11 @@ public class Article {
         this.title = title;
     }
 
-    public Integer getPostBy() {
-        return postBy;
+    public String getPostBy() {
+        return postBy.getUserName();
     }
 
-    public void setPostBy(Integer postBy) {
+    public void setPostBy(User postBy) {
         this.postBy = postBy;
     }
 
@@ -59,4 +65,14 @@ public class Article {
         this.like = like;
     }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "aid=" + aid +
+                ", title='" + title + '\'' +
+                ", postBy=" + postBy +
+                ", content='" + content + '\'' +
+                ", like=" + like +
+                '}';
+    }
 }

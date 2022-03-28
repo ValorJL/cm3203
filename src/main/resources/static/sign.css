@@ -4,12 +4,12 @@ body {
     background-color: gainsboro;
 }
 
-.form-signin {
+.form-sign {
     max-width: 300px;
     margin: 0 auto;
     font-size: 16px;
 }
-.form-signin .inputBox {
+.form-sign .inputBox {
     position: relative;
     padding: 10px;
 }
