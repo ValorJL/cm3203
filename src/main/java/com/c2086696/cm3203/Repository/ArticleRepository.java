@@ -12,5 +12,7 @@ public interface ArticleRepository extends CrudRepository<Article, Integer> {
 
     List<Article> findByPostBy(User user);
 
+    List<Article> findAll();
+
     void  deleteByAid(Integer aid);
 }

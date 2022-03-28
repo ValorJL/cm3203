@@ -14,5 +14,7 @@ public interface ArticleService {
 
     List<Article> findByPostBy(User user);
 
-    void  deleteByAid(Integer Aid);
+    List<Article> findAll();
+
+    void deleteByAid(Integer Aid);
 }

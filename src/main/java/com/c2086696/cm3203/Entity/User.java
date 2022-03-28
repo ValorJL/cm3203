@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "userName"))
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class User{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "userName")
-    private String userName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "password")
     private String password;
@@ -28,12 +28,12 @@ public class User{
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -48,7 +48,7 @@ public class User{
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", userName='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

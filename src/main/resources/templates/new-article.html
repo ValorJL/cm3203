@@ -22,17 +22,19 @@
     </div>
     <div id="content" class="content">
         <br><br>
-        <form class="form-new-artcle" method="post" action="/add-article">
+        <form class="form-new-artcle" method="post" th:action="@{/new-article}" th:object="${article}">
             <div class="new-artcle">
                 <p>
                     <label for="new-artcle-title">Title</label><br>
-                    <input type="text" id="new-artcle-title" name="new-artcle-title" class="title-input" th:f bautofocus>
+                    <input type="text" th:field="*{title}" id="new-artcle-title" name="new-artcle-title" class="title-input" bautofocus>
                 </p>
                 <p>
                     <label for="new-artcle-content">Content</label><br>
-                    <textarea type="text" id="new-artcle-content" name="new-artcle-content" class="content-input" required> </textarea>
+                    <textarea type="text" th:field="*{content}" id="new-artcle-content" name="new-artcle-content" class="content-input" required> </textarea>
                 </p>
                 <button type="submit">Submit</button>
+                <input type="hidden" th:field="*{postBy}"/>
+                <input type="hidden" th:field="*{alike}"/>
             </div>
 
         </form>

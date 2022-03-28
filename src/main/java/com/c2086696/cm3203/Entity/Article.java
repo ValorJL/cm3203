@@ -15,14 +15,14 @@ public class Article {
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user.userName")
+    @JoinColumn(name = "name", referencedColumnName = "name", nullable = false)
     private User postBy;
 
     @Column(name = "content",columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "like")
-    private Integer like;
+    @Column(name = "alike")
+    private Integer alike;
 
 
     public Integer getAid() {
@@ -41,8 +41,8 @@ public class Article {
         this.title = title;
     }
 
-    public String getPostBy() {
-        return postBy.getUserName();
+    public User getPostBy() {
+        return postBy;
     }
 
     public void setPostBy(User postBy) {
@@ -57,12 +57,12 @@ public class Article {
         this.content = content;
     }
 
-    public Integer getLike() {
-        return like;
+    public Integer getAlike() {
+        return alike;
     }
 
-    public void setLike(Integer like) {
-        this.like = like;
+    public void setAlike(Integer alike) {
+        this.alike = alike;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Article {
                 ", title='" + title + '\'' +
                 ", postBy=" + postBy +
                 ", content='" + content + '\'' +
-                ", like=" + like +
+                ", alike=" + alike +
                 '}';
     }
 }

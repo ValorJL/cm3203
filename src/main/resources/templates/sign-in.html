@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="sign.css">
 </head>
 <body>
-<h1>Welcome!</h1>
-<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
 <div class="container">
     <form class="form-sign" method="post" action="/sign-in">
         <h2>Please sign in</h2>
@@ -20,8 +18,8 @@
             <input type="password" id="password" name="password" class="inputBox" placeholder="Password" required>
         </p>
         <button type="submit">Sign in</button>
+        <p>Don't have an account yet? <a th:href="@{/registration}">Register</a></p>
     </form>
-    <button th:href="@{/sign-up}">Cancel</button>
 </div>
 </body>
 </html>
