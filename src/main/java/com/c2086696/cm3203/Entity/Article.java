@@ -21,8 +21,8 @@ public class Article {
     @Column(name = "content",columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "alike")
-    private Integer alike;
+    @Column(name = "alike",columnDefinition = "Integer default '0'")
+    private Integer alike = 0;
 
 
     public Integer getAid() {

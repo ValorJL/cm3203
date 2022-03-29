@@ -1,32 +1,104 @@
 package com.c2086696.cm3203.Controller;
 
 import com.c2086696.cm3203.Entity.Article;
+import com.c2086696.cm3203.Entity.User;
 import com.c2086696.cm3203.Service.ArticleService;
 import com.c2086696.cm3203.Service.UserService;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.naming.Binding;
+import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 public class ArticleController {
 
-    private ArticleService articleService;
+    private final ArticleService articleService;
+    private final UserService userService;
 
-    @RequestMapping(value = "/new-article", method = RequestMethod.GET)
-    public String newArticle(Model model) {
-
-        model.addAttribute("article", new Article());
-        return "/new-article";
+    @Autowired
+    public ArticleController(ArticleService articleService, UserService userService) {
+        this.articleService = articleService;
+        this.userService = userService;
     }
 
-    @RequestMapping(value = "/new-article", method = RequestMethod.POST)
-    public String createNewArticle(@ModelAttribute("article") Article article) {
+    @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
+    public String newArticle(Model model) {
+            Article article = new  Article();
+            model.addAttribute("article", new Article());
+            return "/articleForm";
+    }
 
-        if (!articleService.findByAid(article.getAid()).isEmpty()) {
-            return null;
+//    @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
+//    public String newArticle(Principal principal,Model model) {
+//        Optional<User> user = userService.findByName(principal.getName());
+//        if(user.isPresent()){
+//            Article article = new  Article();
+//            article.setPostBy(user.get());
+//            model.addAttribute("article", new Article());
+//            return "/articleForm";
+//        }else {
+//            return "/error";
+//        }
+//    }
+
+    @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
+    public String createNewArticle(@ModelAttribute("article") Article article, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "/articleForm";
+        }else {
+            articleService.saveArticle(article);
+            return "redirect:/blog/" +article.getPostBy().getName();
         }
-        articleService.saveArticle(article);
-        return "redirect:/welcome";
+    }
+
+    @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
+    public String getArticleWithId(@PathVariable Integer aid,
+                                Principal principal,
+                                Model model) {
+
+        Optional<Article> optionalArticle = articleService.findByAid(aid);
+
+        if (optionalArticle.isPresent()) {
+            Article article = optionalArticle.get();
+            model.addAttribute("article", article);
+
+            if (isPrincipalOwnerOfArticle(principal, article)) {
+                model.addAttribute("name", principal.getName());
+            }
+
+            return "/article";
+
+        } else {
+            return "/error";
+        }
+    }
+
+    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
+    public String deletePostWithId(@PathVariable Integer aid,
+                                   Principal principal) {
+
+        Optional<Article> optionalArticle = articleService.findByAid(aid);
+
+        if (optionalArticle.isPresent()) {
+            Article article = optionalArticle.get();
+            if (isPrincipalOwnerOfArticle(principal, article)) {
+                articleService.delete(article);
+                return "redirect:/welcome";
+            } else {
+                return "/403";
+            }
+
+        } else {
+            return "/error";
+        }
+    }
+
+    private boolean isPrincipalOwnerOfArticle(Principal principal, Article article) {
+        return principal != null && principal.getName().equals(article.getPostBy().getName());
     }
 }

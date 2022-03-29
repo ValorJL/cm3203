@@ -3,13 +3,15 @@ package com.c2086696.cm3203.Service;
 import com.c2086696.cm3203.Entity.Article;
 import com.c2086696.cm3203.Entity.User;
 import com.c2086696.cm3203.Repository.ArticleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.List;
+import java.util.Optional;
 
+@Service
 public class ArticleServiceImpl implements ArticleService{
 
-    @Resource
+    @Autowired
     private ArticleRepository articleRepository;
 
     @Override
@@ -18,22 +20,22 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public List<Article> findByAid(Integer Aid) {
+    public Optional <Article> findByAid(Integer Aid) {
         return articleRepository.findByAid(Aid);
     }
 
     @Override
-    public List<Article> findByPostBy(User user) {
+    public Optional <Article> findByPostBy(User user) {
         return articleRepository.findByPostBy(user);
     }
 
-    @Override
-    public List<Article> findAll() {
-        return articleRepository.findAll();
-    }
+    //@Override
+    //public Optional <Article> findAllOrderByAid() {
+    //    return articleRepository.findAllOrderByAid();
+    //}
 
     @Override
-    public void deleteByAid(Integer Aid) {
-        articleRepository.deleteByAid(Aid);
+    public void delete(Article article) {
+        articleRepository.delete(article);
     }
 }
