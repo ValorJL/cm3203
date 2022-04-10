@@ -7,8 +7,13 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-sign" method="post" action="/sign-in">
+    <form class="form-sign" method="post" action="/loginVerify">
         <h2>Please sign in</h2>
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                Invalid username and password.
+            </div>
+        </div>
         <p>
             <label for="username">Username</label>
             <input type="text" id="username" name="username" class="inputBox" placeholder="Username" required autofocus>

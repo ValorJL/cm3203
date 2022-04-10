@@ -12,4 +12,5 @@ public interface UserService {
     //had this name exist?
     Optional<User> findByName(String name);
 
+    boolean verifyLogin(User user);
 }

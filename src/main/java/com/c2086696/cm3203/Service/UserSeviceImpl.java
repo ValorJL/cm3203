@@ -22,4 +22,12 @@ public class UserSeviceImpl implements UserService{
     public Optional<User> findByName(String name) {
         return userRepository.findByName(name);
     }
+
+    @Override
+    public boolean verifyLogin(User user) {
+        List<User> userList = userRepository.findByNameAndPassword(user.getName(),user.getPassword());
+        return  userList.size()>0;
+    }
+
+
 }

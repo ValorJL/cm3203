@@ -13,98 +13,25 @@
     <div id="side" class="side">
         <ul class="menu">
             <li><a th:href="@{/welcome}">Home Page</a></li>
-            <li><a th:href="@{/profile}">My Profile</a></li>
-            <li><a th:href="@{/account}">My Account</a></li>
-            <li><a th:href="@{/new-article}">New Article</a></li>
+            <li><a th:href="@{/newArticle}">New Article</a></li>
             <li><a th:href="@{/management}">Management</a></li>
-            <li><a th:href="@{/signin}">Log out</a></li>
+            <li><a th:href="@{/login}">Log out</a></li>
         </ul>
     </div>
     <div id="content" class="content">
-        <br><br><br><br>
-        <p>This is a coursework I once did about XSS</p><br>
-        【1】请输入姓名：<br>
+        <br><br><br><br><br>
+        【1】test：<br>
         <input type="text" id="text1" value="">
         <button onclick="search1()">Search</button>
+        <br>
+        <label id="label1" class="labelMes"></label>
         <script type="text/javascript">
             function search1(){
                 var text = document.getElementById("text1").value;
-                document.write(text);
+                document.getElementById('label1').innerHTML = text;
             }
         </script>
         <br>
-
-        </br>
-        【2】请输入姓名：[可防御链接与点击出现弹窗的恶意攻击;]<br>
-        <input type="text" id="text2" value="">
-        <button onclick="search2()">Search</button>
-        <script type="text/javascript">
-            function search2(){
-                var text = document.getElementById("text2").value;
-                var temText = text.replace("href=",'');
-                var newText = temText.replace("onclick=",'');
-                document.write(newText);
-            }
-        </script>
-        <br>
-
-        </br>
-        【3】请输入姓名：[可防御无论大小写的链接与点击出现弹窗的恶意攻击;]<br>
-        <input type="text" id="text3" value="">
-        <button onclick="search3()">Search</button>
-        <script type="text/javascript">
-            function search3(){
-                var reg1 = /href=/i;
-                var reg2 = /onclick=/i;
-                var text = document.getElementById("text3").value;
-                var temText = text.replace(reg1,'');
-                var newText = temText.replace(reg2,'');
-                document.write(newText);
-            }
-        </script>
-        <br>
-
-        </br>
-        【4】请输入姓名：[通过限制输入长度，防御闭合标签的恶意攻击]<br>
-        <input type="text" maxlength="4" id="text4" value="">
-        <button onclick="search4()">Search</button>
-        <script type="text/javascript">
-            function search4(){
-                var text = document.getElementById("text4").value;
-                document.write(text);
-            }
-        </script>
-        <br>
-
-        </br>
-        【5】请输入姓名：[另一种思路，去除输入的input字样]<br>
-        <input type="text" id="text5" value="">
-        <button onclick="search5()">Search</button>
-        <script type="text/javascript">
-            function search5(){
-                var reg1 = /href=/i;
-                var reg2 = /onclick=/i;
-                var reg3 = /<input>/i;
-                var text = document.getElementById("text5").value;
-                var temText = text.replace(reg1,'');
-                var newText = temText.replace(reg2,'');
-                var newText2 = newText.replace(reg3,'');
-                document.write(newText2);
-            }
-        </script>
-        <br>
-
-        </br>
-        【6】请输入姓名：[另一种思路，将>去掉]<br>
-        <input type="text" id="text6" value="">
-        <button onclick="search6()">Search</button>
-        <script type="text/javascript">
-            function search6(){
-                var text = document.getElementById("text6").value;
-                var newText = text.replace(">",'');
-                document.write(newText);
-            }
-        </script>
         </br>
     </div>
 </div>

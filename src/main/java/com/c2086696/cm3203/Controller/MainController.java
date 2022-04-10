@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
 
-    @GetMapping("/login")
-    public String login(){
-        return"login";
-    }
-
-    @GetMapping("/signin")
-    public String signin(){
-        return "sign-in";
-    }
-
     @GetMapping("/welcome")
     public String wlecome(){
         return"welcome";
     }
 
+    @GetMapping("/management")
+    public String management(){
+        return"management";
+    }
+
     @GetMapping("/01")
     public String test(){
         return"test01";
+    }
+
+    @GetMapping("/02")
+    public String test2(){
+        return"test02";
     }
 
 

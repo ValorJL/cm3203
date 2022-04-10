@@ -13,16 +13,14 @@
     <div id="side" class="side">
         <ul class="menu">
             <li><a th:href="@{/welcome}">Home Page</a></li>
-            <li><a th:href="@{/profile}">My Profile</a></li>
-            <li><a th:href="@{/account}">My Account</a></li>
-            <li><a th:href="@{/new-article}">New Article</a></li>
+            <li><a th:href="@{/newArticle}">New Article</a></li>
             <li><a th:href="@{/management}">Management</a></li>
-            <li><a th:href="@{/signin}">Log out</a></li>
+            <li><a th:href="@{/login}">Log out</a></li>
         </ul>
     </div>
     <div id="content" class="content">
         <br><br>
-        <form class="form-new-artcle" method="post" th:action="@{/new-article}" th:object="${article}">
+        <form class="form-new-artcle" method="post" th:action="@{/newArticle}" th:object="${article}">
             <div class="new-artcle">
                 <p>
                     <label for="new-artcle-title">Title</label><br>

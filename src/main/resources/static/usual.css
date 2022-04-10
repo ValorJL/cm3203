@@ -119,3 +119,19 @@ a{
     min-height: 500px;
     min-width: 80%;
 }
+
+.labelMes{
+    margin: 0px;
+    padding: 0px;
+}
+.table2{
+    margin-left: 200px;
+}
+.table2 a{
+    float: left;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+.table2 td{
+    width: 500px;
+}

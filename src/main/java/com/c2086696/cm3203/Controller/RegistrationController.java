@@ -29,11 +29,11 @@ public class RegistrationController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String createNewUser(@ModelAttribute("user") User user) {
-
+        //If this name exists, return null
         if (!userService.findByName(user.getName()).isEmpty()) {
             return null;
         }
         userService.saveUser(user);
-        return "redirect:/signin";
+        return "redirect:/login";
     }
 }

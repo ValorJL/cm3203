@@ -26,13 +26,27 @@ public class ArticleController {
         this.userService = userService;
     }
 
+    //For show the appearance of the page
     @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
     public String newArticle(Model model) {
             Article article = new  Article();
+
+//            //Attempt 1
+//            //Temporary code, to set the PostBy(don't work,不能用临时数值)
+//            User userTem = new User();
+//            userTem.setId(5);
+//            userTem.setName("Admin");
+//            userTem.setPassword("123");
+
+//            //Attempt 2
+//            //don't work, the same error
+            article.setPostBy(userService.findByName("Admin").get());
+
             model.addAttribute("article", new Article());
             return "/articleForm";
     }
 
+    //the really core for newAritcle, principal required
 //    @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
 //    public String newArticle(Principal principal,Model model) {
 //        Optional<User> user = userService.findByName(principal.getName());
@@ -46,15 +60,23 @@ public class ArticleController {
 //        }
 //    }
 
+
     @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
-    public String createNewArticle(@ModelAttribute("article") Article article, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            return "/articleForm";
-        }else {
-            articleService.saveArticle(article);
-            return "redirect:/blog/" +article.getPostBy().getName();
-        }
+    public String createNewArticle(@ModelAttribute("article") Article article) {
+        articleService.saveArticle(article);
+        return "redirect:/welcome";
     }
+
+//the really core for newAritcle, bindingResult required
+//    @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
+//    public String createNewArticle(@ModelAttribute("article") Article article, BindingResult bindingResult) {
+//        if(bindingResult.hasErrors()){
+//            return "/articleForm";
+//        }else {
+//            articleService.saveArticle(article);
+//            return "redirect:/article/" +article.getAid();
+//        }
+//    }
 
     @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
     public String getArticleWithId(@PathVariable Integer aid,

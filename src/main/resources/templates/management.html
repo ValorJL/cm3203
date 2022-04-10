@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>New Article</title>
     <link rel="stylesheet" href="usual.css">
 </head>
 <body>
@@ -19,14 +19,25 @@
         </ul>
     </div>
     <div id="content" class="content">
-        <br>
-        <div class="post">
-            <div th:text="${session.loginUser}"></div>
-        </div>
-        <div class="post">aaaaaa</div>
-        <div class="post">aaaaaa</div>
-        <div class="post">aaaaaa</div>
-        <div class="end-reading">--- Here's the whole contents already ---</div>
+        <br><br><br><br>
+        <table class="table2">
+            <tr>
+                <td>Title</td>
+                <td><a>Operation</a></td>
+            </tr>
+            <tr>
+                <td>Life is like a journey</td>
+                <td><a>delete</a></td>
+            </tr>
+            <tr>
+                <td>Shall I compare thee to a summer's day                      </td>
+                <td><a>delete</a></td>
+            </tr>
+            <tr>
+                <td>Les Misérables</td>
+                <td><a>delete</a></td>
+            </tr>
+        </table>
         <br>
     </div>
 </div>
