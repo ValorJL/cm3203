@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <link rel="stylesheet" href="usual.css">
+    <link rel="stylesheet" href="css/usual.css">
 </head>
 <body>
 <div id="topbar" class="top-bar">
@@ -21,7 +21,7 @@
     <div id="content" class="content">
         <br>
         <div class="post">
-            <div th:text="${session.loginUser}"></div>
+            <div th:text="${session.loginUser.getName()}"></div>
         </div>
         <div class="post">aaaaaa</div>
         <div class="post">aaaaaa</div>

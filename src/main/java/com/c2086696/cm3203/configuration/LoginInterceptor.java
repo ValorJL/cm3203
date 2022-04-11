@@ -4,14 +4,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginInterceptor implements HandlerInterceptor {
-
-    //用于存储排除拦截的url
-    private List<String> urls = new ArrayList<String>();
 
     //目标方法执行前，也就是进入控制器前，拦截
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -28,16 +22,5 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         }
     }
-    //下面这个可以一会儿注释了看看有没有影响，没有就去掉了
-    //设置能通过的url
-//    public List<String> getUrls() {
-//        urls.add("/login");   //login url请求
-//
-//        //静态资源
-//        urls.add("/img/*");
-//        urls.add("/js/*");
-//        urls.add("/css/*");
-//        return urls;
-//    }
 
 }
