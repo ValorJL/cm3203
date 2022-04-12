@@ -30,9 +30,9 @@ public class ArticleController {
     public String newArticle(Model model, HttpServletRequest request) {
         String str = (String) request.getSession().getAttribute("loginName");
         User user = userService.findByName(str).get();
-        Article article1 = new Article();
-        article1.setName(user);
-        model.addAttribute("article", article1);
+        Article article = new Article();
+        article.setName(user);
+        model.addAttribute("article", article);
         return "/newArticle";
     }
 
