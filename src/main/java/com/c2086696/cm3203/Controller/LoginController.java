@@ -5,13 +5,8 @@ import com.c2086696.cm3203.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.security.Principal;
-import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class LoginController {
@@ -36,6 +31,7 @@ public class LoginController {
         if (verify) {
             model.addAttribute("loginUser",user);
             request.getSession().setAttribute("loginUser", user);
+            request.getSession().setAttribute("loginName",username);
             return "redirect:/welcome";
         } else {
             return "redirect:/login";

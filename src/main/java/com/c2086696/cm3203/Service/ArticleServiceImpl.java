@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class ArticleServiceImpl implements ArticleService{
 
-    @Autowired
     private ArticleRepository articleRepository;
+
+    @Autowired
+    public ArticleServiceImpl(ArticleRepository articleRepository){
+        this.articleRepository = articleRepository;
+    }
 
     @Override
     public void saveArticle(Article article) {
@@ -25,8 +29,8 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Optional <Article> findByPostBy(User user) {
-        return articleRepository.findByPostBy(user);
+    public Optional <Article> findByName(User user) {
+        return articleRepository.findByName(user);
     }
 
     //@Override

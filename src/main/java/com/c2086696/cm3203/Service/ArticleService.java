@@ -12,7 +12,7 @@ public interface ArticleService {
 
     Optional<Article> findByAid(Integer Aid);
 
-    Optional<Article> findByPostBy(User user);
+    Optional<Article> findByName(User user);
 
     //Optional<Article> findAllOrderByAid();
 

@@ -7,10 +7,9 @@ import com.c2086696.cm3203.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Binding;
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -28,37 +27,14 @@ public class ArticleController {
 
     //For show the appearance of the page
     @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
-    public String newArticle(Model model) {
-            Article article = new  Article();
-
-//            //Attempt 1
-//            //Temporary code, to set the PostBy(don't work,不能用临时数值)
-//            User userTem = new User();
-//            userTem.setId(5);
-//            userTem.setName("Admin");
-//            userTem.setPassword("123");
-
-//            //Attempt 2
-//            //don't work, the same error
-            article.setPostBy(userService.findByName("Admin").get());
-
-            model.addAttribute("article", new Article());
-            return "/articleForm";
+    public String newArticle(Model model, HttpServletRequest request) {
+        String str = (String) request.getSession().getAttribute("loginName");
+        User user = userService.findByName(str).get();
+        Article article1 = new Article();
+        article1.setName(user);
+        model.addAttribute("article", article1);
+        return "/newArticle";
     }
-
-    //the really core for newAritcle, principal required
-//    @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
-//    public String newArticle(Principal principal,Model model) {
-//        Optional<User> user = userService.findByName(principal.getName());
-//        if(user.isPresent()){
-//            Article article = new  Article();
-//            article.setPostBy(user.get());
-//            model.addAttribute("article", new Article());
-//            return "/articleForm";
-//        }else {
-//            return "/error";
-//        }
-//    }
 
 
     @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
@@ -67,16 +43,6 @@ public class ArticleController {
         return "redirect:/welcome";
     }
 
-//the really core for newAritcle, bindingResult required
-//    @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
-//    public String createNewArticle(@ModelAttribute("article") Article article, BindingResult bindingResult) {
-//        if(bindingResult.hasErrors()){
-//            return "/articleForm";
-//        }else {
-//            articleService.saveArticle(article);
-//            return "redirect:/article/" +article.getAid();
-//        }
-//    }
 
     @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
     public String getArticleWithId(@PathVariable Integer aid,
@@ -121,6 +87,6 @@ public class ArticleController {
     }
 
     private boolean isPrincipalOwnerOfArticle(Principal principal, Article article) {
-        return principal != null && principal.getName().equals(article.getPostBy().getName());
+        return principal != null && principal.getName().equals(article.getName().getName());
     }
 }

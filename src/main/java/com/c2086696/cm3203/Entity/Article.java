@@ -16,10 +16,10 @@ public class Article {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "name", referencedColumnName = "name", nullable = false)
-    private User postBy;
+    private User name;
 
-    @Column(name = "content",columnDefinition = "TEXT")
-    private String content;
+    @Column(name = "body",columnDefinition = "TEXT")
+    private String body;
 
     @Column(name = "alike",columnDefinition = "Integer default '0'")
     private Integer alike = 0;
@@ -41,20 +41,20 @@ public class Article {
         this.title = title;
     }
 
-    public User getPostBy() {
-        return postBy;
+    public User getName() {
+        return name;
     }
 
-    public void setPostBy(User postBy) {
-        this.postBy = postBy;
+    public void setName(User name) {
+        this.name = name;
     }
 
-    public String getContent() {
-        return content;
+    public String getBody() {
+        return body;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public Integer getAlike() {
@@ -70,8 +70,8 @@ public class Article {
         return "Article{" +
                 "aid=" + aid +
                 ", title='" + title + '\'' +
-                ", postBy=" + postBy +
-                ", content='" + content + '\'' +
+                ", name=" + name +
+                ", body='" + body + '\'' +
                 ", alike=" + alike +
                 '}';
     }

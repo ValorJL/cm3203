@@ -23,12 +23,12 @@
         <form class="form-new-artcle" method="post" th:action="@{/newArticle}" th:object="${article}">
             <div class="new-artcle">
                 <p>
-                    <label for="new-artcle-title">Title</label><br>
-                    <input type="text" th:field="*{title}" id="new-artcle-title" name="new-artcle-title" class="title-input" bautofocus>
+                    <label for="title">Title</label><br>
+                    <input type="text" th:field="*{title}" id="title" name="title" class="title-input" bautofocus>
                 </p>
                 <p>
-                    <label for="new-artcle-content">Content</label><br>
-                    <textarea type="text" th:field="*{content}" id="new-artcle-content" name="new-artcle-content" class="content-input" required> </textarea>
+                    <label for="body">Content</label><br>
+                    <textarea type="text" th:field="*{body}" id="body" name="body" class="content-input" required> </textarea>
                 </p>
                 <button type="submit">Submit</button>
 
