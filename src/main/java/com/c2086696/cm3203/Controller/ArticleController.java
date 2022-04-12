@@ -44,49 +44,50 @@ public class ArticleController {
     }
 
 
-    @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
-    public String getArticleWithId(@PathVariable Integer aid,
-                                Principal principal,
-                                Model model) {
+    //@RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/article/49", method = RequestMethod.GET)
+    //public String getArticleWithId(@PathVariable Integer aid,Model model) {
+    public String getArticleWithId(Model model) {
 
-        Optional<Article> optionalArticle = articleService.findByAid(aid);
+        Optional<Article> optionalArticle = articleService.findByAid(49);
 
         if (optionalArticle.isPresent()) {
             Article article = optionalArticle.get();
             model.addAttribute("article", article);
 
-            if (isPrincipalOwnerOfArticle(principal, article)) {
-                model.addAttribute("name", principal.getName());
-            }
-
             return "/article";
 
         } else {
-            return "/error";
+            return "/02";
         }
     }
 
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
-    public String deletePostWithId(@PathVariable Integer aid,
-                                   Principal principal) {
+    @RequestMapping(value = "/aaa", method = RequestMethod.GET)
+    //public String getArticleWithId(@PathVariable Integer aid,Model model) {
+    public String getArticle(Model model) {
+//        Integer aid = 49;
+//        Article a = articleService.findByAid(aid).get();
+        Article a = new Article();
+        a.setName(userService.findByName("123").get());
+        a.setTitle("Success");
+        a.setBody("lalalalalala");
+        model.addAttribute("article",a);
+        return "/aaa";
+    }
+
+    @RequestMapping(value = "/article/{aid}", method = RequestMethod.DELETE)
+    public String deletePostWithId(@PathVariable Integer aid) {
 
         Optional<Article> optionalArticle = articleService.findByAid(aid);
 
         if (optionalArticle.isPresent()) {
+            System.out.println("删除:"+aid);
             Article article = optionalArticle.get();
-            if (isPrincipalOwnerOfArticle(principal, article)) {
-                articleService.delete(article);
-                return "redirect:/welcome";
-            } else {
-                return "/403";
-            }
-
+            articleService.delete(article);
+            return "redirect:/welcome";
         } else {
             return "/error";
         }
     }
 
-    private boolean isPrincipalOwnerOfArticle(Principal principal, Article article) {
-        return principal != null && principal.getName().equals(article.getName().getName());
-    }
 }

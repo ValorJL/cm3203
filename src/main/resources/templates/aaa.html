@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Article Detail</title>
+    <link rel="stylesheet" href="css/usual.css">
+</head>
+<body>
+<div id="topbar" class="top-bar">
+    <p style="font-size:16px">Welcome:-) Let's see what everyone has shared today!</p>
+</div>
+<div id="main" class="main">
+    <div id="side" class="side">
+        <ul class="menu">
+            <li><a th:href="@{/welcome}">Home Page</a></li>
+            <li><a th:href="@{/newArticle}">New Article</a></li>
+            <li><a th:href="@{/management}">Management</a></li>
+            <li><a th:href="@{/login}">Log out</a></li>
+        </ul>
+    </div>
+    <div id="content" class="content">
+        <br><br>
+        <h1 th:text="${article.getTitle()}">111</h1>
+        <h4 th:text="${article.getName().getName()}"></h4>
+        <h3 th:text="${article.getBody()}"></h3>
+        <br><br>
+    </div>
+</div>
+</body>
+</html>
