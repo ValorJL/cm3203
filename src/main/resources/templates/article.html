@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Article Detail</title>
-    <link rel="stylesheet" href="css/usual.css">
+    <link rel="stylesheet" th:href="@{/css/usual.css}">
 </head>
 <body>
 <div id="topbar" class="top-bar">
@@ -20,7 +20,9 @@
     </div>
     <div id="content" class="content">
         <br><br>
-        <h1 th:text="${article.title}">Title</h1>
+        <h1 th:text="${article.getTitle()}">111</h1>
+        <h4 th:text="${article.getName().getName()}"></h4>
+        <h3 th:text="${article.getBody()}"></h3>
         <br><br>
     </div>
 </div>

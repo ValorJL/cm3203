@@ -46,17 +46,10 @@ public class ArticleController {
 
     @RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
     public String getArticleWithId(@PathVariable Integer aid,Model model) {
+        System.out.println("展示文章"+aid);
         Article a = articleService.findByAid(aid);
         model.addAttribute("article",a);
-        return "/aaa";
-    }
-
-    @RequestMapping(value = "/aaa", method = RequestMethod.GET)
-    public String getArticle(Model model) {
-        Integer aid = 49;
-        Article a = articleService.findByAid(aid);
-        model.addAttribute("article",a);
-        return "/aaa";
+        return "/article";
     }
 
     @RequestMapping(value = "/article/{aid}", method = RequestMethod.DELETE)
