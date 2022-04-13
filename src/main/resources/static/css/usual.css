@@ -46,7 +46,7 @@ a{
     width: 100%;
     left: 0px;
     right: 0px;
-    background-color: cornflowerblue;
+    background-color: darkgray;
 }
 
 .side{
@@ -134,4 +134,19 @@ a{
 }
 .table2 td{
     width: 500px;
+}
+
+.management-table{
+    position: center;
+    margin: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.management-table td{
+    min-width: 200px;
+}
+.management-table a{
+    color: black;
+    margin: 0px;
+    float: none;
 }

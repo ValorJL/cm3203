@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -52,7 +53,18 @@ public class ArticleController {
         return "/article";
     }
 
-    @RequestMapping(value = "/article/{aid}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/management", method = RequestMethod.GET)
+    public String management(Model model, HttpServletRequest request){
+        String str = (String) request.getSession().getAttribute("loginName");
+        System.out.println("现在登录的用户是"+str);
+        User user = userService.findByName(str).get();
+        List<Article> articleList = articleService.findByName(user);
+        System.out.println("已读到articleList");
+        model.addAttribute("articleList",articleList);
+        return"/management";
+    }
+
+    @RequestMapping(value = "/deleteArticle")
     public String deletePostWithId(@PathVariable Integer aid) {
         System.out.println("删除:"+aid);
         Article article = articleService.findByAid(aid);

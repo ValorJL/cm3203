@@ -19,10 +19,25 @@
         </ul>
     </div>
     <div id="content" class="content">
-        <br><br><br><br>
+        <br><br>
+        <table class="management-table">
+            <tr>
+            <th>post by</th>
+            <th>Title</th>
+            <th>like</th>
+            <th>Operation</th>
+            </tr>
 
-
-        <br>
+            <tr th:each="a:${articleList}">
+                <td th:text="${a.getName().getName()}"></td>
+                <td th:text="${a.title}"></td>
+                <td th:text="${a.alike}"></td>
+                <td>
+                    <a th:href="@{/deleteArticle(aid=${a.aid})}">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <br><br>
     </div>
 </div>
 </body>

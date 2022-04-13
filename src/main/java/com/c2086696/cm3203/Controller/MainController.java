@@ -11,12 +11,6 @@ public class MainController {
     public String wlecome(){
         return"welcome";
     }
-
-    @GetMapping("/management")
-    public String management(){
-        return"management";
-    }
-
     @GetMapping("/01")
     public String test(){
         return"test01";

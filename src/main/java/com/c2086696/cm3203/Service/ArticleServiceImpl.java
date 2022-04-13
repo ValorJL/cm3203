@@ -6,6 +6,7 @@ import com.c2086696.cm3203.Repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,7 +30,7 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Optional <Article> findByName(User user) {
+    public List<Article> findByName(User user) {
         return articleRepository.findByName(user);
     }
 
