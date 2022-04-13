@@ -6,11 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-
-    @GetMapping("/welcome")
-    public String wlecome(){
-        return"welcome";
-    }
     @GetMapping("/01")
     public String test(){
         return"test01";

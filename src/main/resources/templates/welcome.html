@@ -20,12 +20,23 @@
     </div>
     <div id="content" class="content">
         <br>
-        <div class="post">
-            <div th:text="${session.loginName}"></div>
-        </div>
-        <div class="post">aaaaaa</div>
-        <div class="post">aaaaaa</div>
-        <div class="post">aaaaaa</div>
+        <table class="management-table">
+            <tr>
+                <th>Post by</th>
+                <th>Title</th>
+                <th>Like</th>
+                <th>Operation</th>
+            </tr>
+
+            <tr th:each="a:${articleList}">
+                <td th:text="${a.getName().getName()}"></td>
+                <td th:text="${a.title}"></td>
+                <td th:text="${a.alike}"></td>
+                <td>
+                    <a th:href="@{/article/{aid}(aid=${a.aid})}">Full text</a>
+                </td>
+            </tr>
+        </table>
         <div class="end-reading">--- Here's the whole contents already ---</div>
         <br>
     </div>
