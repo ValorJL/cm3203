@@ -6,7 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends CrudRepository<Article, Integer> {
@@ -15,6 +14,7 @@ public interface ArticleRepository extends CrudRepository<Article, Integer> {
 
     List<Article> findByName(User user);
 
+    List<Article> findAll();
     //List<Article> findAllOrderByAid();
 
     void deleteByAid(Integer aid);

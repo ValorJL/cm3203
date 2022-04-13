@@ -69,4 +69,12 @@ public class ArticleController {
         return "redirect:/welcome";
     }
 
+    @RequestMapping(value = "/allArticle", method = RequestMethod.GET)
+    public String allArticle(Model model){
+        List<Article> articleList = articleService.findAll();
+        System.out.println("已读到articleList");
+        model.addAttribute("articleList",articleList);
+        return"/allArticle";
+    }
+
 }

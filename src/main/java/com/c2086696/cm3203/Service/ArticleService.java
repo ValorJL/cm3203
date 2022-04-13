@@ -17,4 +17,6 @@ public interface ArticleService {
     //List<Article> findAllOrderByAid();
 
     void deleteByAid(Integer aid);
+
+    List<Article> findAll();
 }

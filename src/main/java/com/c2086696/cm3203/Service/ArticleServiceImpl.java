@@ -45,4 +45,9 @@ public class ArticleServiceImpl implements ArticleService{
 
         articleRepository.deleteByAid(aid);
     }
+
+    @Override
+    public List<Article> findAll() {
+        return articleRepository.findAll();
+    }
 }
