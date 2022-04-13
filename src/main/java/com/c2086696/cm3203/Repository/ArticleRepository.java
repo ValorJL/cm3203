@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface ArticleRepository extends CrudRepository<Article, Integer> {
 
-    Optional<Article> findByAid(Integer aid);
+    Article findByAid(Integer aid);
 
     Optional<Article> findByName(User user);
 

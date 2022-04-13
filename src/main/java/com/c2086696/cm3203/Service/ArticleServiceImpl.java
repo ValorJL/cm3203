@@ -24,7 +24,7 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Optional <Article> findByAid(Integer Aid) {
+    public Article findByAid(Integer Aid) {
         return articleRepository.findByAid(Aid);
     }
 

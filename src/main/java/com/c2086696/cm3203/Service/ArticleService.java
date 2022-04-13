@@ -10,7 +10,7 @@ public interface ArticleService {
     //add new article
     void saveArticle(Article article);
 
-    Optional<Article> findByAid(Integer Aid);
+    Article findByAid(Integer Aid);
 
     Optional<Article> findByName(User user);
 

@@ -10,8 +10,13 @@ import java.util.Optional;
 
 @Service
 public class UserSeviceImpl implements UserService{
-    @Autowired
+
     private UserRepository userRepository;
+
+    @Autowired
+    public UserSeviceImpl(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void saveUser(User user) {

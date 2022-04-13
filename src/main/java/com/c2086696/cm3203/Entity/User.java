@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
-public class User{
+public class User implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;

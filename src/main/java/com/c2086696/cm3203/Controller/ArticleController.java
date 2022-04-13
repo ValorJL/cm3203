@@ -45,49 +45,46 @@ public class ArticleController {
 
 
     //@RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
-    @RequestMapping(value = "/article/49", method = RequestMethod.GET)
-    //public String getArticleWithId(@PathVariable Integer aid,Model model) {
-    public String getArticleWithId(Model model) {
-
-        Optional<Article> optionalArticle = articleService.findByAid(49);
-
-        if (optionalArticle.isPresent()) {
-            Article article = optionalArticle.get();
-            model.addAttribute("article", article);
-
-            return "/article";
-
-        } else {
-            return "/02";
-        }
-    }
+//    @RequestMapping(value = "/article/49", method = RequestMethod.GET)
+//    //public String getArticleWithId(@PathVariable Integer aid,Model model) {
+//    public String getArticleWithId(Model model) {
+//
+//        Optional<Article> optionalArticle = articleService.findByAid(49);
+//
+//        if (optionalArticle.isPresent()) {
+//            Article article = optionalArticle.get();
+//            model.addAttribute("article", article);
+//
+//            return "/article";
+//
+//        } else {
+//            return "/02";
+//        }
+//    }
 
     @RequestMapping(value = "/aaa", method = RequestMethod.GET)
     //public String getArticleWithId(@PathVariable Integer aid,Model model) {
     public String getArticle(Model model) {
-//        Integer aid = 49;
-//        Article a = articleService.findByAid(aid).get();
-        Article a = new Article();
-        a.setName(userService.findByName("123").get());
-        a.setTitle("Success");
-        a.setBody("lalalalalala");
+
+        Integer aid = 49;
+        Article a = articleService.findByAid(aid);
         model.addAttribute("article",a);
         return "/aaa";
     }
 
-    @RequestMapping(value = "/article/{aid}", method = RequestMethod.DELETE)
-    public String deletePostWithId(@PathVariable Integer aid) {
-
-        Optional<Article> optionalArticle = articleService.findByAid(aid);
-
-        if (optionalArticle.isPresent()) {
-            System.out.println("删除:"+aid);
-            Article article = optionalArticle.get();
-            articleService.delete(article);
-            return "redirect:/welcome";
-        } else {
-            return "/error";
-        }
-    }
+//    @RequestMapping(value = "/article/{aid}", method = RequestMethod.DELETE)
+//    public String deletePostWithId(@PathVariable Integer aid) {
+//
+//        Optional<Article> optionalArticle = articleService.findByAid(aid);
+//
+//        if (optionalArticle.isPresent()) {
+//            System.out.println("删除:"+aid);
+//            Article article = optionalArticle.get();
+//            articleService.delete(article);
+//            return "redirect:/welcome";
+//        } else {
+//            return "/error";
+//        }
+//    }
 
 }
