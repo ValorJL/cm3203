@@ -22,9 +22,9 @@
         <br><br>
         <table class="management-table">
             <tr>
-            <th>post by</th>
+            <th>Post by</th>
             <th>Title</th>
-            <th>like</th>
+            <th>Like</th>
             <th>Operation</th>
             </tr>
 
@@ -33,7 +33,7 @@
                 <td th:text="${a.title}"></td>
                 <td th:text="${a.alike}"></td>
                 <td>
-                    <a th:href="@{/deleteArticle(aid=${a.aid})}">Delete</a>
+                    <a th:href="@{/deleteArticle/{aid}(aid=${a.aid})}">Delete</a>
                 </td>
             </tr>
         </table>

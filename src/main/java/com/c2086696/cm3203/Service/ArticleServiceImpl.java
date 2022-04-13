@@ -6,10 +6,11 @@ import com.c2086696.cm3203.Repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@Transactional
 public class ArticleServiceImpl implements ArticleService{
 
     private ArticleRepository articleRepository;
@@ -25,8 +26,8 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Article findByAid(Integer Aid) {
-        return articleRepository.findByAid(Aid);
+    public Article findByAid(Integer aid) {
+        return articleRepository.findByAid(aid);
     }
 
     @Override
@@ -34,13 +35,14 @@ public class ArticleServiceImpl implements ArticleService{
         return articleRepository.findByName(user);
     }
 
-    //@Override
-    //public Optional <Article> findAllOrderByAid() {
-    //    return articleRepository.findAllOrderByAid();
-    //}
+//    @Override
+//    public List<Article> findAllOrderByAid() {
+//        return articleRepository.findAllOrderByAid();
+//    }
 
     @Override
-    public void delete(Article article) {
-        articleRepository.delete(article);
+    public void deleteByAid(Integer aid) {
+
+        articleRepository.deleteByAid(aid);
     }
 }

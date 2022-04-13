@@ -10,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ArticleController {
@@ -64,11 +62,10 @@ public class ArticleController {
         return"/management";
     }
 
-    @RequestMapping(value = "/deleteArticle")
+    @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
     public String deletePostWithId(@PathVariable Integer aid) {
         System.out.println("删除:"+aid);
-        Article article = articleService.findByAid(aid);
-        articleService.delete(article);
+        articleService.deleteByAid(aid);
         return "redirect:/welcome";
     }
 
