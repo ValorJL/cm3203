@@ -48,6 +48,7 @@ public class ArticleController {
         System.out.println("展示文章"+aid);
         Article a = articleService.findByAid(aid);
         model.addAttribute("article",a);
+        model.addAttribute("newLineChar", '\n');
         return "/article";
     }
 

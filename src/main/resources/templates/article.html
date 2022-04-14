@@ -22,7 +22,8 @@
         <br><br>
         <h1 th:text="${article.getTitle()}"></h1>
         <h4 th:text="${article.getName().getName()}"></h4>
-        <h3 th:text="${article.getBody()}"></h3>
+
+        <h3 th:utext="${article.getBody().replaceAll(newLineChar,'&lt;br/&gt;')}"></h3>
         <br><br>
     </div>
 </div>
