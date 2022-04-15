@@ -21,9 +21,6 @@ public class Article {
     @Column(name = "body",columnDefinition = "TEXT")
     private String body;
 
-    @Column(name = "alike",columnDefinition = "Integer default '0'")
-    private Integer alike = 0;
-
 
     public Integer getAid() {
         return aid;
@@ -57,14 +54,6 @@ public class Article {
         this.body = body;
     }
 
-    public Integer getAlike() {
-        return alike;
-    }
-
-    public void setAlike(Integer alike) {
-        this.alike = alike;
-    }
-
     @Override
     public String toString() {
         return "Article{" +
@@ -72,7 +61,6 @@ public class Article {
                 ", title='" + title + '\'' +
                 ", name=" + name +
                 ", body='" + body + '\'' +
-                ", alike=" + alike +
                 '}';
     }
 }

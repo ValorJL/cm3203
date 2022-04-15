@@ -11,10 +11,5 @@ public class MainController {
         return"test01";
     }
 
-    @GetMapping("/02")
-    public String test2(){
-        return"test02";
-    }
-
 
 }
