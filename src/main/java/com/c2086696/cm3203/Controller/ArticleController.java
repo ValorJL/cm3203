@@ -66,7 +66,8 @@ public class ArticleController {
     @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
     public String deletePostWithId(@PathVariable Integer aid) {
         System.out.println("删除:"+aid);
-        articleService.deleteByAid(aid);
+
+        articleService.deleteByAid(0);
         return "redirect:/welcome";
     }
 
