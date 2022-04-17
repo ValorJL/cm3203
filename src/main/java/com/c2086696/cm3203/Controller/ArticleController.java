@@ -61,9 +61,14 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
-    public String deletePostWithId(@PathVariable Integer aid) {
-        articleService.deleteByAid(aid);
-        return "redirect:/welcome";
+    public String deletePostWithId(@PathVariable Integer aid, HttpServletRequest request) {
+        String str = (String) request.getSession().getAttribute("loginName");
+        User user = userService.findByName(str).get();
+        if(articleService.findByAid(aid).getName().equals(user)){
+            articleService.deleteByAid(aid);
+            return "redirect:/welcome";
+        }
+        return null;
     }
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
