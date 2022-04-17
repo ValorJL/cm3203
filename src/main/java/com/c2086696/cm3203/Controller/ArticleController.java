@@ -45,7 +45,6 @@ public class ArticleController {
 
     @RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
     public String getArticleWithId(@PathVariable Integer aid,Model model) {
-        System.out.println("展示文章"+aid);
         Article a = articleService.findByAid(aid);
         model.addAttribute("article",a);
         model.addAttribute("newLineChar", '\n');
@@ -55,26 +54,21 @@ public class ArticleController {
     @RequestMapping(value = "/management", method = RequestMethod.GET)
     public String management(Model model, HttpServletRequest request){
         String str = (String) request.getSession().getAttribute("loginName");
-        System.out.println("现在登录的用户是"+str);
         User user = userService.findByName(str).get();
         List<Article> articleList = articleService.findByName(user);
-        System.out.println("已读到articleList");
         model.addAttribute("articleList",articleList);
         return"/management";
     }
 
     @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
     public String deletePostWithId(@PathVariable Integer aid) {
-        System.out.println("删除:"+aid);
-
-        articleService.deleteByAid(0);
+        articleService.deleteByAid(aid);
         return "redirect:/welcome";
     }
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String allArticle(Model model){
         List<Article> articleList = articleService.findAll();
-        System.out.println("已读到articleList");
         model.addAttribute("articleList",articleList);
         return"/welcome";
     }
