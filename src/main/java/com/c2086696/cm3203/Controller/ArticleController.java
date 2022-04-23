@@ -66,7 +66,7 @@ public class ArticleController {
         User user = userService.findByName(str).get();
         if(articleService.findByAid(aid).getName().equals(user)){
             articleService.deleteByAid(aid);
-            return "redirect:/welcome";
+            return "redirect:/management";
         }
         return null;
     }
