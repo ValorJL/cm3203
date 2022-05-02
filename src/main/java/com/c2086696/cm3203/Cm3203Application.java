@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-//@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-//@SpringBootApplication
-@SpringBootApplication(exclude = {ReactiveSecurityAutoConfiguration.class})
+@SpringBootApplication
 public class Cm3203Application {
 
     public static void main(String[] args) {
