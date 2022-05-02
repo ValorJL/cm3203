@@ -30,7 +30,7 @@ public class RegistrationController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String createNewUser(@ModelAttribute("user") User user) {
         //If this name exists, return null
-        if (!userService.findByName(user.getName()).isEmpty()) {
+        if (!userService.findByName(user.getUsername()).isEmpty()) {
             return null;
         }
         userService.saveUser(user);

@@ -26,7 +26,7 @@ public class LoginController {
     @RequestMapping(value = {"/loginVerify"}, method = RequestMethod.POST)
     public String login(String username,String password, Model model, HttpServletRequest request) {
         User user = new User();
-        user.setName(username);
+        user.setUsername(username);
         user.setPassword(password);
         boolean verify = userService.verifyLogin(user);
         if (verify) {
@@ -37,5 +37,11 @@ public class LoginController {
         } else {
             return "redirect:/login";
         }
+    }
+
+    //登出，还没写完
+    @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
+    public String LoginOut(Model model){
+        return "/login";
     }
 }

@@ -3,6 +3,8 @@ package com.c2086696.cm3203.Service;
 import com.c2086696.cm3203.Entity.User;
 import com.c2086696.cm3203.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,9 +32,18 @@ public class UserSeviceImpl implements UserService{
 
     @Override
     public boolean verifyLogin(User user) {
-        List<User> userList = userRepository.findByNameAndPassword(user.getName(),user.getPassword());
+        List<User> userList = userRepository.findByNameAndPassword(user.getUsername(),user.getPassword());
         return  userList.size()>0;
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> user = userRepository.findByName(username);
+        if (user.isPresent()){
+            return user.get();
+        }else {
+            throw new UsernameNotFoundException("Not user found");
+        }
+    }
 }

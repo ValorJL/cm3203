@@ -1,32 +1,35 @@
 package com.c2086696.cm3203.Entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "article", uniqueConstraints = @UniqueConstraint(columnNames = "aid"))
+@Table(name = "article")
+@SequenceGenerator(name = "post_seq_gen", sequenceName = "post_seq", initialValue = 10, allocationSize = 1)
 public class Article {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "aid")
-    private Integer aid;
+    private Long aid;
 
-    @Column(name = "title")
+    @Column(name = "title",nullable = false)
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "name", referencedColumnName = "name", nullable = false)
-    private User name;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private User user;
 
-    @Column(name = "body",columnDefinition = "TEXT")
+    @Column(name = "body",columnDefinition = "TEXT",nullable = false)
     private String body;
 
-
-    public Integer getAid() {
+    public Long getAid() {
         return aid;
     }
 
-    public void setAid(Integer aid) {
+    public void setAid(Long aid) {
         this.aid = aid;
     }
 
@@ -38,12 +41,12 @@ public class Article {
         this.title = title;
     }
 
-    public User getName() {
-        return name;
+    public User getUser() {
+        return user;
     }
 
-    public void setName(User name) {
-        this.name = name;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getBody() {
@@ -59,7 +62,7 @@ public class Article {
         return "Article{" +
                 "aid=" + aid +
                 ", title='" + title + '\'' +
-                ", name=" + name +
+//                ", user=" + user +
                 ", body='" + body + '\'' +
                 '}';
     }

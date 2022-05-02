@@ -30,7 +30,7 @@ public class ArticleController {
         String str = (String) request.getSession().getAttribute("loginName");
         User user = userService.findByName(str).get();
         Article article = new Article();
-        article.setName(user);
+        article.setUser(user);
         model.addAttribute("article", article);
         return "/newArticle";
     }
@@ -64,7 +64,7 @@ public class ArticleController {
     public String deletePostWithId(@PathVariable Integer aid, HttpServletRequest request) {
         String str = (String) request.getSession().getAttribute("loginName");
         User user = userService.findByName(str).get();
-        if(articleService.findByAid(aid).getName().equals(user)){
+        if(articleService.findByAid(aid).getUser().equals(user)){
             articleService.deleteByAid(aid);
             return "redirect:/management";
         }
