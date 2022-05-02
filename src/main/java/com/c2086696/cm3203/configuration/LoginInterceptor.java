@@ -15,8 +15,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         } else {
             //没有登录
-            System.out.println("你还没登录，没有权限");
-            request.setAttribute("msg","没有权限请先登陆");
+            System.out.println("You haven't logined in");
+            request.setAttribute("msg","Please Login in first");
             response.sendRedirect("/login");    //未登录，拦截跳转到登录页
             return false;
 
