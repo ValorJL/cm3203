@@ -1,31 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Registration</title>
-    <link rel="stylesheet" th:href="@{/css/sign.css}">
+  <!--<title>Spring Boot Thymeleaf + Spring Security</title>-->
+  <meta charset="UTF-8">
+  <title>Registration</title>
+  <link rel="stylesheet" th:href="@{/css/sign.css}">
 </head>
 <body>
+
 <div class="container">
 
-    <form class="form-sign" method="post" th:action="@{/registration}" th:object="${user}">
-        <h2>Register today:-)</h2>
-        <p>
-            <label for="name">Username</label>
-            <input type="text" th:field="*{name}" id="name" name="name" class="inputBox" placeholder="User name" required autofocus>
-            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                   class="alert alert-danger"></label>
-        </p>
-        <p>
-            <label for="password">Password</label>
-            <input type="password" th:field="*{password}" id="password" name="password" class="inputBox" placeholder="Password" required>
-            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                   class="alert alert-danger"></label>
-        </p>
-        <button type="submit">Confirm</button>
+  <!--Show this info message only if registered successfully-->
+  <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
+  <form class="form-sign" autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post" role="form">
+    <h2>Register today:-)</h2>
+    <p>
+      <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger"></label>
+      <label>Username</label>
+      <input type="text" th:field="*{username}" placeholder="Username" class="inputBox"/>
+    </p>
 
-        <p>Already have an account? <a th:href="@{/login}">Return</a></p>
-    </form>
+    <p>
+      <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger"></label>
+      <label>Password</label>
+      <input type="password" th:field="*{password}" placeholder="Password" class="inputBox"/>
+    </p>
+
+    <button type="submit">Confirm</button>
+    <p>Already have an account? <a th:href="@{/login}">Return</a></p>
+  </form>
+
 </div>
+
+
 </body>
 </html>

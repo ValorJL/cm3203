@@ -8,7 +8,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "authorities")
-@SequenceGenerator(name = "authority_seq_gen", sequenceName = "authority_seq", initialValue = 10, allocationSize = 1)
+@SequenceGenerator(name = "authority_seq_gen", sequenceName = "authority_seq", initialValue = 1, allocationSize = 1)
 public class Authority implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authority_seq_gen")

@@ -27,22 +27,25 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
+    protected void configure(AuthenticationManagerBuilder provider) throws Exception{
+        provider.authenticationProvider(authenticationProvider());
+    }
+
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers( "/registration", "/error","/management", "/article/**", "/newArticle","/css/**", "/pic/**").permitAll()
+                .antMatchers( "/signup","/registration","/", "/error","/article/**", "/newArticle","/css/**", "/pic/**","/templates/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .loginProcessingUrl("/loginVerify")
-                .defaultSuccessUrl("/welcome")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/loginOut")
                 .permitAll();
     }
 }

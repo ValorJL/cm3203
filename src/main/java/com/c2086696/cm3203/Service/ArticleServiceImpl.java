@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,14 +32,9 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public List<Article> findByName(User user) {
-        return articleRepository.findByName(user);
+    public List<Article> findByUser(User user) {
+        return articleRepository.findByUser(user);
     }
-
-//    @Override
-//    public List<Article> findAllOrderByAid() {
-//        return articleRepository.findAllOrderByAid();
-//    }
 
     @Override
     public void deleteByAid(Integer aid) {

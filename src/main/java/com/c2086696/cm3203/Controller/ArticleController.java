@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ArticleController {
@@ -28,7 +29,7 @@ public class ArticleController {
     @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
     public String newArticle(Model model, HttpServletRequest request) {
         String str = (String) request.getSession().getAttribute("loginName");
-        User user = userService.findByName(str).get();
+        User user = userService.findByUsername(str).get();
         Article article = new Article();
         article.setUser(user);
         model.addAttribute("article", article);
@@ -54,8 +55,8 @@ public class ArticleController {
     @RequestMapping(value = "/management", method = RequestMethod.GET)
     public String management(Model model, HttpServletRequest request){
         String str = (String) request.getSession().getAttribute("loginName");
-        User user = userService.findByName(str).get();
-        List<Article> articleList = articleService.findByName(user);
+        User user = userService.findByUsername(str).get();
+        List<Article> articleList = articleService.findByUser(user);
         model.addAttribute("articleList",articleList);
         return"/management";
     }
@@ -63,7 +64,7 @@ public class ArticleController {
     @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
     public String deletePostWithId(@PathVariable Integer aid, HttpServletRequest request) {
         String str = (String) request.getSession().getAttribute("loginName");
-        User user = userService.findByName(str).get();
+        User user = userService.findByUsername(str).get();
         if(articleService.findByAid(aid).getUser().equals(user)){
             articleService.deleteByAid(aid);
             return "redirect:/management";
@@ -71,11 +72,11 @@ public class ArticleController {
         return null;
     }
 
-    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String allArticle(Model model){
         List<Article> articleList = articleService.findAll();
         model.addAttribute("articleList",articleList);
-        return"/welcome";
+        return"welcome";
     }
 
 }

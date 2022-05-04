@@ -4,6 +4,7 @@ import com.c2086696.cm3203.Entity.Article;
 import com.c2086696.cm3203.Entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ArticleService {
 
@@ -12,9 +13,7 @@ public interface ArticleService {
 
     Article findByAid(Integer aid);
 
-    List<Article> findByName(User user);
-
-    //List<Article> findAllOrderByAid();
+    List<Article> findByUser(User user);
 
     void deleteByAid(Integer aid);
 

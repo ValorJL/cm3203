@@ -11,14 +11,17 @@ import java.util.Collection;
 import java.util.List;
 
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 @Table(name = "users")
-@SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", initialValue = 10, allocationSize = 1)
+@SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", initialValue = 1, allocationSize = 1)
 public class User implements UserDetails {
+
+
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "user_seq_gen")
     @Column(name = "id")
     private Long id;
+
 
     @Column(name = "username",nullable = false,unique = true)
     private String username;
@@ -55,6 +58,10 @@ public class User implements UserDetails {
         return authorities;
     }
 
+    public void setAuthorities(Collection<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
     @Override
     public String getPassword() {
         return password;
@@ -82,6 +89,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {//启用
         return this.enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override

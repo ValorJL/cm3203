@@ -12,7 +12,7 @@ public interface ArticleRepository extends CrudRepository<Article, Integer> {
 
     Article findByAid(Integer aid);
 
-    List<Article> findByName(User user);
+    List<Article> findByUser(User user);
 
     List<Article> findAll();
     //List<Article> findAllOrderByAid();

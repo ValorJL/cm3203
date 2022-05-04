@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "article")
-@SequenceGenerator(name = "post_seq_gen", sequenceName = "post_seq", initialValue = 10, allocationSize = 1)
+@SequenceGenerator(name = "post_seq_gen", sequenceName = "post_seq", initialValue = 1, allocationSize = 1)
 public class Article {
 
     @Id
@@ -27,10 +27,6 @@ public class Article {
 
     public Long getAid() {
         return aid;
-    }
-
-    public void setAid(Long aid) {
-        this.aid = aid;
     }
 
     public String getTitle() {

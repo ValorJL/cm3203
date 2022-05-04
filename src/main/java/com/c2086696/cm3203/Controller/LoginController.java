@@ -1,47 +1,20 @@
 package com.c2086696.cm3203.Controller;
 
-import com.c2086696.cm3203.Entity.User;
-import com.c2086696.cm3203.Service.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import java.security.Principal;
 
 @Controller
 public class LoginController {
 
-    private final UserService userService;
-
-    public LoginController(UserService userService) {
-        this.userService = userService;
-    }
-
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-        return "/login";
-    }
-
-    @RequestMapping(value = {"/loginVerify"}, method = RequestMethod.POST)
-    public String login(String username,String password, Model model, HttpServletRequest request) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        boolean verify = userService.verifyLogin(user);
-        if (verify) {
-            model.addAttribute("loginUser",user);
-            request.getSession().setAttribute("loginUser", user);
-            request.getSession().setAttribute("loginName",username);
-            return "redirect:/welcome";
-        } else {
-            return "redirect:/login";
+    public String login(Principal principal) {
+        if (principal!=null){
+            return "redirect:/";
+        }else{
+            return "login";
         }
     }
 
-    //登出，还没写完
-    @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
-    public String LoginOut(Model model){
-        return "/login";
-    }
 }
