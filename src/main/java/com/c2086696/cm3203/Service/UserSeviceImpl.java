@@ -1,6 +1,5 @@
 package com.c2086696.cm3203.Service;
 
-import com.c2086696.cm3203.Entity.Authority;
 import com.c2086696.cm3203.Entity.User;
 import com.c2086696.cm3203.Repository.AuthorityRepository;
 import com.c2086696.cm3203.Repository.UserRepository;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
