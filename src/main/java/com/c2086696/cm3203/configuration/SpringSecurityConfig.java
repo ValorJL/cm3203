@@ -11,13 +11,25 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final AccessDeniedHandler accessDeniedHandler;
+    final DataSource dataSource;
+
     @Autowired
     private UserService userService;
+
+    public SpringSecurityConfig(AccessDeniedHandler accessDeniedHandler, DataSource dataSource) {
+        this.accessDeniedHandler = accessDeniedHandler;
+        this.dataSource = dataSource;
+    }
 
     @Bean
     AuthenticationProvider authenticationProvider(){
@@ -27,25 +39,43 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-    protected void configure(AuthenticationManagerBuilder provider) throws Exception{
-        provider.authenticationProvider(authenticationProvider());
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+        auth.
+                jdbcAuthentication()
+                .usersByUsernameQuery("usersQuery")
+                .authoritiesByUsernameQuery("rolesQuery")
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder());
+
+        // In memory authentication
+        auth.inMemoryAuthentication()
+                .withUser("admin").password("password").roles("ADMIN");
+    }
+
+    /**
+     * Configure and return BCrypt password encoder
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers( "/signup","/registration","/", "/error","/article/**", "/newArticle","/css/**", "/pic/**","/templates/**").permitAll()
+                .antMatchers( "/registration","/", "/error","/article/**", "/newArticle","/css/**", "/pic/**","/templates/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/")
-                .failureUrl("/login")
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
+                .and().headers().frameOptions().disable();
     }
 }
