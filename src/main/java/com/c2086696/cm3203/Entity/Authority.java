@@ -39,13 +39,4 @@ public class Authority implements GrantedAuthority {
         this.users = users;
     }
 
-    @Override
-    public String toString() {
-        return "Authority{" +
-                "id=" + id +
-                ", authority='" + authority + '\'' +
-//                ", users=" + users +
-                '}';
-    }
-
 }

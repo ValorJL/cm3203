@@ -1,5 +1,6 @@
 package com.c2086696.cm3203.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +24,7 @@ public class User implements UserDetails {
     private String username;
 
     @Column(name = "password",nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(name = "enabled",nullable = false)
@@ -79,7 +81,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {//证书非过期
-        return false;
+        return true;
     }
 
     @Override
@@ -89,17 +91,5 @@ public class User implements UserDetails {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", enabled=" + enabled +
-//                ", articles=" + articles +
-                ", authorities=" + authorities +
-                '}';
     }
 }
