@@ -88,14 +88,16 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
-    public String deletePostWithId(@PathVariable Long aid, HttpServletRequest request) {
-        String str = (String) request.getSession().getAttribute("loginName");
-        User user = userService.findByUsername(str).get();
-        if(articleService.findByAid(aid).get().getUser().equals(user)){
+    public String deleteArticleWithAid(@PathVariable Long aid, Principal principal) {
+
+        Optional<User> user = userService.findByUsername(principal.getName());
+        if (user.isPresent() && articleService.findByAid(aid).get().getUser().equals(user.get())) {
             articleService.deleteByAid(aid);
             return "redirect:/management";
+
+        } else {
+            return "/error";
         }
-        return null;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
