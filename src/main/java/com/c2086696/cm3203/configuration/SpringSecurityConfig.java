@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -64,18 +66,24 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers( "/registration","/", "/error","/article/**", "/newArticle","/css/**", "/pic/**","/templates/**").permitAll()
+                .antMatchers( "/registration","/welcome", "/error","/article/**", "/newArticle","/css/**", "/pic/**","/templates/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/welcome")
                 .permitAll()
                 .and()
                 .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 .and().headers().frameOptions().disable();
     }
+
 }

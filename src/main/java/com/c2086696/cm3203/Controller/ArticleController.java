@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -100,7 +99,7 @@ public class ArticleController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String allArticle(Model model){
         List<Article> articleList = articleService.findAll();
         model.addAttribute("articleList",articleList);
