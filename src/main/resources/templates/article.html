@@ -21,7 +21,7 @@
     <div id="content" class="content">
         <br><br>
         <h1 th:text="${article.getTitle()}"></h1>
-        <h4 th:text="${article.getUser().username}"></h4>
+        <h4 th:text="${article.getUser().getUsername()}"></h4>
         <h3 th:utext="${article.getBody().replaceAll(newLineChar,'&lt;br&gt;')}"></h3>
         <br>
         <br><br>

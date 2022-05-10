@@ -74,12 +74,17 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/management", method = RequestMethod.GET)
-    public String management(Model model, HttpServletRequest request){
-        String str = (String) request.getSession().getAttribute("loginName");
-        User user = userService.findByUsername(str).get();
-        List<Article> articleList = articleService.findByUser(user);
-        model.addAttribute("articleList",articleList);
-        return"/management";
+    public String management(Principal principal, Model model){
+
+        Optional<User> user = userService.findByUsername(principal.getName());
+        if (user.isPresent()) {
+            List<Article> articleList = articleService.findByUser(user.get());
+            model.addAttribute("articleList",articleList);
+            return"/management";
+
+        } else {
+            return "/error";
+        }
     }
 
     @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
