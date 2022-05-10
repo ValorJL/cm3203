@@ -7,9 +7,11 @@ import com.c2086696.cm3203.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,23 +27,33 @@ public class ArticleController {
         this.userService = userService;
     }
 
-    //For show the appearance of the page
-    @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
-    public String newArticle(Model model, HttpServletRequest request) {
-        String str = (String) request.getSession().getAttribute("loginName");
-        User user = userService.findByUsername(str).get();
-        Article article = new Article();
-        article.setUser(user);
-        model.addAttribute("article", article);
-        return "/newArticle";
-    }
 
+    @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
+    public String newArticle(Principal principal, Model model) {
+        Optional<User> user = userService.findByUsername(principal.getName());
+        if (user.isPresent()) {
+            Article article = new Article();
+            article.setUser(user.get());
+            model.addAttribute("article", article);
+            return "/newArticle";
+
+        } else {
+            return "/error";
+        }
+    }
 
     @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
-    public String createNewArticle(@ModelAttribute("article") Article article) {
-        articleService.saveArticle(article);
-        return "redirect:/welcome";
+    public String createNewPost(Article article,
+                                BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "newArticle";
+        } else {
+            articleService.saveArticle(article);
+            return "redirect:/welcome";
+        }
     }
+
 
 
     @RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
