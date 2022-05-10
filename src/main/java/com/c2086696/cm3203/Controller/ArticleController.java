@@ -54,14 +54,23 @@ public class ArticleController {
         }
     }
 
-
-
     @RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
-    public String getArticleWithId(@PathVariable Integer aid,Model model) {
-        Article a = articleService.findByAid(aid);
-        model.addAttribute("article",a);
-        model.addAttribute("newLineChar", '\n');
-        return "/article";
+    public String getArticleWithAid(@PathVariable Long aid,
+                                Principal principal,
+                                Model model) {
+
+        Optional<Article> optionalArticle = articleService.findByAid(aid);
+
+        if (optionalArticle.isPresent()) {
+            Article article = optionalArticle.get();
+            model.addAttribute("article",article);
+            model.addAttribute("username", principal.getName());
+            model.addAttribute("newLineChar", '\n');
+            return "article";
+
+        } else {
+            return "error";
+        }
     }
 
     @RequestMapping(value = "/management", method = RequestMethod.GET)
@@ -74,10 +83,10 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
-    public String deletePostWithId(@PathVariable Integer aid, HttpServletRequest request) {
+    public String deletePostWithId(@PathVariable Long aid, HttpServletRequest request) {
         String str = (String) request.getSession().getAttribute("loginName");
         User user = userService.findByUsername(str).get();
-        if(articleService.findByAid(aid).getUser().equals(user)){
+        if(articleService.findByAid(aid).get().getUser().equals(user)){
             articleService.deleteByAid(aid);
             return "redirect:/management";
         }

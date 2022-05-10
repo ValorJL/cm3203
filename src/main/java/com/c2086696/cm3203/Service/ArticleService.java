@@ -11,11 +11,11 @@ public interface ArticleService {
     //add new article
     void saveArticle(Article article);
 
-    Article findByAid(Integer aid);
+    Optional<Article> findByAid(Long aid);
 
     List<Article> findByUser(User user);
 
-    void deleteByAid(Integer aid);
+    void deleteByAid(Long aid);
 
     List<Article> findAll();
 }

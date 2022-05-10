@@ -27,7 +27,7 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Article findByAid(Integer aid) {
+    public Optional<Article> findByAid(Long aid) {
         return articleRepository.findByAid(aid);
     }
 
@@ -37,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public void deleteByAid(Integer aid) {
+    public void deleteByAid(Long aid) {
 
         articleRepository.deleteByAid(aid);
     }

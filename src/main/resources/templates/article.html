@@ -12,7 +12,7 @@
 <div id="main" class="main">
     <div id="side" class="side">
         <ul class="menu">
-            <li><a th:href="@{/welcome}">Home Page</a></li>
+            <li><a th:href="@{/}">Home Page</a></li>
             <li><a th:href="@{/newArticle}">New Article</a></li>
             <li><a th:href="@{/management}">Management</a></li>
             <li><a th:href="@{/login}">Log out</a></li>
@@ -21,7 +21,7 @@
     <div id="content" class="content">
         <br><br>
         <h1 th:text="${article.getTitle()}"></h1>
-        <h4 th:text="${article.getName().getName()}"></h4>
+        <h4 th:text="${article.getUser().username}"></h4>
         <h3 th:utext="${article.getBody().replaceAll(newLineChar,'&lt;br&gt;')}"></h3>
         <br>
         <br><br>
