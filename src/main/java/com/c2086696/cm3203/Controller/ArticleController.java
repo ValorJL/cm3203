@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
+import java.io.Console;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -93,6 +95,19 @@ public class ArticleController {
         if (user.isPresent() && articleService.findByAid(aid).get().getUser().equals(user.get())) {
             articleService.deleteByAid(aid);
             return "redirect:/management";
+
+        } else {
+            return "/error";
+        }
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteWithAid(String aid, Principal principal) {
+        long aidLong = Long.parseLong(aid);
+        Optional<User> user = userService.findByUsername(principal.getName());
+        if (user.isPresent() && articleService.findByAid(aidLong).get().getUser().equals(user.get())) {
+            articleService.deleteByAid(aidLong);
+            return "redirect:/welcome";
 
         } else {
             return "/error";

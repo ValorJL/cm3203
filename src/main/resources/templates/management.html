@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
     <title>Welcome</title>
     <link rel="stylesheet" th:href="@{/css/usual.css}">
 </head>
@@ -24,6 +24,7 @@
             <table class="management-table">
                 <tr>
                     <th>Post by</th>
+                    <th>Id</th>
                     <th>Title</th>
                     <th>Body</th>
                     <th>Operation</th>
@@ -31,10 +32,16 @@
 
                 <tr th:each="a:${articleList}">
                     <td th:text="${a.getUser().getUsername()}"></td>
-                    <td th:text="${a.title}"></td>
+                    <td th:id="aid" th:text="${a.getAid()}"></td>
+                    <td th:text="${a.getTitle()}"></td>
                     <td th:text="${a.getBody().substring(0,8)}+'...'"></td>
                     <td>
-                        <a th:href="@{/deleteArticle/{aid}(aid=${a.aid})}">Delete</a>
+
+                        <form th:action="@{/delete}" method="POST">
+                            <input th:type="hidden" th:value="${a.getAid()}" name="aid">
+                            <input type="submit" value="Delete"/>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
                     </td>
                 </tr>
             </table>
