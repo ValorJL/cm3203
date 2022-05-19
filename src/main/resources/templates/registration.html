@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <!--<title>Spring Boot Thymeleaf + Spring Security</title>-->
   <meta charset="UTF-8">
   <title>Registration</title>
   <link rel="stylesheet" th:href="@{/css/sign.css}">
@@ -10,7 +9,6 @@
 
 <div class="container">
 
-  <!--Show this info message only if registered successfully-->
   <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
   <form class="form-sign" autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post" role="form">
     <h2>Register today:-)</h2>
