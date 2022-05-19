@@ -35,10 +35,6 @@ public class ArticleServiceImpl implements ArticleService{
         return articleRepository.findByName(user);
     }
 
-//    @Override
-//    public List<Article> findAllOrderByAid() {
-//        return articleRepository.findAllOrderByAid();
-//    }
 
     @Override
     public void deleteByAid(Integer aid) {

@@ -6,13 +6,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class LoginConfig implements WebMvcConfigurer {
-    //将登录拦截器添加进来
-    //addPathPatterns()添加拦截
-    //excludePathPatterns()排除拦截
+    //Adding the login blocker in
     public void addInterceptors(InterceptorRegistry registry){
         LoginInterceptor loginInterceptor = new LoginInterceptor();
-
-        //添加应该被拦截的路径 addPathPatterns()
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/welcome","/newArticle","/management");
+        //Add paths that should be blocked addPathPatterns()
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/newArticle","/management");
     }
 }

@@ -15,7 +15,6 @@ public interface ArticleRepository extends CrudRepository<Article, Integer> {
     List<Article> findByName(User user);
 
     List<Article> findAll();
-    //List<Article> findAllOrderByAid();
 
     void deleteByAid(Integer aid);
 }

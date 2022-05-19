@@ -1,7 +1,5 @@
 package com.c2086696.cm3203.Entity;
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
