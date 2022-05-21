@@ -46,9 +46,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("rolesQuery")
                 .dataSource(dataSource)
                 .passwordEncoder(new BCryptPasswordEncoder());
-
-        auth.inMemoryAuthentication()
-                .withUser("admin").password("password").roles("ADMIN");
     }
 
     @Override
