@@ -69,6 +69,7 @@ public class ArticleController {
         } else {
             return "error";
         }
+
     }
 
     @RequestMapping(value = "/management", method = RequestMethod.GET)
@@ -79,19 +80,6 @@ public class ArticleController {
             List<Article> articleList = articleService.findByUser(user.get());
             model.addAttribute("articleList",articleList);
             return"/management";
-
-        } else {
-            return "/error";
-        }
-    }
-
-    @RequestMapping(value = "/deleteArticle/{aid}", method = RequestMethod.GET)
-    public String deleteArticleWithAid(@PathVariable Long aid, Principal principal) {
-
-        Optional<User> user = userService.findByUsername(principal.getName());
-        if (user.isPresent() && articleService.findByAid(aid).get().getUser().equals(user.get())) {
-            articleService.deleteByAid(aid);
-            return "redirect:/management";
 
         } else {
             return "/error";

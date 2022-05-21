@@ -40,7 +40,6 @@
                         <form th:action="@{/delete}" method="POST">
                             <input th:type="hidden" th:value="${a.getAid()}" name="aid">
                             <input type="submit" value="Delete"/>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
                     </td>
                 </tr>
