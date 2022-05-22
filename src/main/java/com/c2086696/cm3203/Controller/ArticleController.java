@@ -33,10 +33,10 @@ public class ArticleController {
             Article article = new Article();
             article.setUser(user.get());
             model.addAttribute("article", article);
-            return "/newArticle";
+            return "newArticle";
 
         } else {
-            return "/error";
+            return null;
         }
     }
 
@@ -67,7 +67,7 @@ public class ArticleController {
             return "article";
 
         } else {
-            return "error";
+            return null;
         }
 
     }
@@ -79,10 +79,10 @@ public class ArticleController {
         if (user.isPresent()) {
             List<Article> articleList = articleService.findByUser(user.get());
             model.addAttribute("articleList",articleList);
-            return"/management";
+            return"management";
 
         } else {
-            return "/error";
+            return null;
         }
     }
 
@@ -95,7 +95,7 @@ public class ArticleController {
             return "redirect:/welcome";
 
         } else {
-            return "/error";
+            return null;
         }
     }
 
@@ -103,7 +103,7 @@ public class ArticleController {
     public String allArticle(Model model){
         List<Article> articleList = articleService.findAll();
         model.addAttribute("articleList",articleList);
-        return"welcome";
+        return "welcome";
     }
 
 }
