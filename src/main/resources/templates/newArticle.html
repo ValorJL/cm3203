@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>New Article</title>
     <link rel="stylesheet" th:href="@{/css/usual.css}">
 </head>
 <body>
-<div class="container">
 <div id="topbar" class="top-bar">
     <p style="font-size:16px">Welcome:-) Let's see what everyone has shared today!</p>
 </div>
@@ -16,7 +15,7 @@
             <li><a th:href="@{/welcome}">Home Page</a></li>
             <li><a th:href="@{/newArticle}">New Article</a></li>
             <li><a th:href="@{/management}">Management</a></li>
-            <li><a th:href="@{/logout}">Logout</a></li>
+            <li><a th:href="@{/login}">Log out</a></li>
         </ul>
     </div>
     <div id="content" class="content">
@@ -24,28 +23,19 @@
         <form class="form-new-artcle" method="post" th:action="@{/newArticle}" th:object="${article}">
             <div class="new-artcle">
                 <p>
-                    <label>Title</label><br>
-                    <label th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
-                           class="alert alert-danger"></label>
-                    <input type="text" th:field="*{title}" class="title-input"/>
+                    <label for="title">Title</label><br>
+                    <input type="text" th:field="*{title}" id="title" name="title" class="title-input" bautofocus>
                 </p>
                 <p>
-                    <label>Body</label><br>
-                    <label th:if="${#fields.hasErrors('body')}" th:errors="*{body}"
-                           class="alert alert-danger"></label>
-                    <textarea th:field="*{body}" class="content-input"/>
+                    <label for="body">Content</label><br>
+                    <textarea type="text" th:field="*{body}" id="body" name="body" class="content-input" required> </textarea>
                 </p>
-                <input type="hidden" th:field="*{aid}"/>
-                <input type="hidden" th:field="*{user}"/>
-                <P>
-                    <input type="submit" class="btn btn-primary btn-block" value="Save"/>
-                </P>
+                <input type="hidden" th:field="*{name}">
+                <button type="submit">Submit</button>
             </div>
-
         </form>
         <br>
     </div>
-</div>
 </div>
 </body>
 </html>
