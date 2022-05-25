@@ -70,22 +70,22 @@ public class User implements UserDetails {
     }
 
     @Override
-    public boolean isAccountNonExpired() {//账号非过期
+    public boolean isAccountNonExpired() {//Account non-expired
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked() {//账号非锁定
+    public boolean isAccountNonLocked() {//Account non-locked
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {//证书非过期
+    public boolean isCredentialsNonExpired() {//Credentials non-expired
         return true;
     }
 
     @Override
-    public boolean isEnabled() {//启用
+    public boolean isEnabled() {//Account enabled
         return this.enabled;
     }
 
