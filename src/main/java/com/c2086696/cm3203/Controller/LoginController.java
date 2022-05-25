@@ -1,6 +1,6 @@
 package com.c2086696.cm3203.Controller;
 
-import com.c2086696.cm3203.Entity.User;
+import com.c2086696.cm3203.DAO.User;
 import com.c2086696.cm3203.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

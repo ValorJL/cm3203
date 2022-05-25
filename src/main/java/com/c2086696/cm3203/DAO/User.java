@@ -1,4 +1,4 @@
-package com.c2086696.cm3203.Entity;
+package com.c2086696.cm3203.DAO;
 
 import javax.persistence.*;
 import java.io.Serializable;
