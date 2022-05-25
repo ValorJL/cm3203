@@ -37,15 +37,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.
-                jdbcAuthentication()
-                .usersByUsernameQuery("usersQuery")
-                .authoritiesByUsernameQuery("rolesQuery")
-                .dataSource(dataSource)
-                .passwordEncoder(new BCryptPasswordEncoder());
-    }
-
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http
