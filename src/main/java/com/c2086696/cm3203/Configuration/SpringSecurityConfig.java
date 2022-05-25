@@ -20,14 +20,12 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AccessDeniedHandler accessDeniedHandler;
     final DataSource dataSource;
 
     @Autowired
     private UserService userService;
 
-    public SpringSecurityConfig(AccessDeniedHandler accessDeniedHandler, DataSource dataSource) {
-        this.accessDeniedHandler = accessDeniedHandler;
+    public SpringSecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -70,8 +68,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()
-                .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 .and()
                 .csrf()
                 .and()
