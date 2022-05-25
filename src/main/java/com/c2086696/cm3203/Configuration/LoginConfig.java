@@ -1,4 +1,4 @@
-package com.c2086696.cm3203.configuration;
+package com.c2086696.cm3203.Configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
