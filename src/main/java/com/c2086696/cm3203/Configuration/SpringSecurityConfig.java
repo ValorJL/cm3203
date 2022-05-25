@@ -1,4 +1,4 @@
-package com.c2086696.cm3203.configuration;
+package com.c2086696.cm3203.Configuration;
 
 import com.c2086696.cm3203.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

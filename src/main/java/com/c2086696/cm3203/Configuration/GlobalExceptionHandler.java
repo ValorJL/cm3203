@@ -1,4 +1,4 @@
-package com.c2086696.cm3203.configuration;
+package com.c2086696.cm3203.Configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

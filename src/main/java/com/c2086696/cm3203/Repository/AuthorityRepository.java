@@ -1,6 +1,6 @@
 package com.c2086696.cm3203.Repository;
 
-import com.c2086696.cm3203.Entity.Authority;
+import com.c2086696.cm3203.DAO.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

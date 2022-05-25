@@ -1,6 +1,6 @@
 package com.c2086696.cm3203.Service;
 
-import com.c2086696.cm3203.Entity.User;
+import com.c2086696.cm3203.DAO.User;
 import com.c2086696.cm3203.Repository.AuthorityRepository;
 import com.c2086696.cm3203.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
