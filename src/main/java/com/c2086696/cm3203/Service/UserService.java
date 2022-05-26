@@ -4,11 +4,10 @@ import com.c2086696.cm3203.DAO.User;
 import java.util.Optional;
 
 public interface UserService {
-    //add new user
+    //save the new user
     void saveUser(User user);
-
-    //had this name exist?
+    //find the user by username
     Optional<User> findByName(String name);
-
+    //Verify user information
     boolean verifyLogin(User user);
 }

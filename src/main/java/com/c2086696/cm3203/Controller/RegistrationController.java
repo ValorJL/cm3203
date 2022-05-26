@@ -28,7 +28,7 @@ public class RegistrationController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String createNewUser(@ModelAttribute("user") User user,Model model) {
         //If this name exists, return null
-        if (!userService.findByName(user.getName()).isEmpty()) {
+        if (userService.findByName(user.getName()).isEmpty()) {
             model.addAttribute("unsuccessMessage", "This username has already been registered");
             return "/registration";
         }
