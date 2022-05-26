@@ -24,7 +24,6 @@
             <table class="management-table">
                 <tr>
                     <th>Post by</th>
-                    <th>Id</th>
                     <th>Title</th>
                     <th>Body</th>
                     <th>Operation</th>
@@ -32,7 +31,6 @@
 
                 <tr th:each="a:${articleList}">
                     <td th:text="${a.getUser().getUsername()}"></td>
-                    <td th:id="aid" th:text="${a.getAid()}"></td>
                     <td th:text="${a.getTitle()}"></td>
                     <td th:text="${a.getBody().substring(0,8)}+'...'"></td>
                     <td>
