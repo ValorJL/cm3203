@@ -36,8 +36,10 @@ public class RegistrationController {
         if (!bindingResult.hasErrors()) {
             // Registration successful, save user
             userService.saveUser(user);
-            model.addAttribute("successMessage", "User has been registered successfully");
+            model.addAttribute("successMessage", "The user has been registered successfully");
             model.addAttribute("user", new User());
+        }else{
+            model.addAttribute("unsuccessMessage", "This username has already been registered");
         }
         return "/registration";
     }

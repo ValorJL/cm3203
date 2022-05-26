@@ -8,7 +8,7 @@
 <body>
 
 <div class="container">
-
+  <div class="alert alert-info" th:if="${unsuccessMessage}" th:utext="${unsuccessMessage}"></div>
   <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
   <form class="form-sign" autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post" role="form">
     <h2>Register today:-)</h2>
