@@ -41,7 +41,7 @@ public class RegistrationController {
         }else{
             model.addAttribute("unsuccessMessage", "This username has already been registered");
         }
-        return "/registration";
+        return "registration";
     }
 
 }
