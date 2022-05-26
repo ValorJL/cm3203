@@ -53,23 +53,16 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
-    public String getArticleWithAid(@PathVariable Long aid,
-                                Principal principal,
-                                Model model) {
-
+    public String getArticleWithAid(@PathVariable Long aid, Model model) {
         Optional<Article> optionalArticle = articleService.findByAid(aid);
-
         if (optionalArticle.isPresent()) {
             Article article = optionalArticle.get();
             model.addAttribute("article",article);
-            model.addAttribute("username", principal.getName());
             model.addAttribute("newLineChar", '\n');
             return "article";
-
         } else {
             return null;
         }
-
     }
 
     @RequestMapping(value = "/management", method = RequestMethod.GET)
@@ -93,7 +86,6 @@ public class ArticleController {
         if (user.isPresent() && articleService.findByAid(aidLong).get().getUser().equals(user.get())) {
             articleService.deleteByAid(aidLong);
             return "redirect:/welcome";
-
         } else {
             return null;
         }
