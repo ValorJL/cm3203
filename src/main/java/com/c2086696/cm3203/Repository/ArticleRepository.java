@@ -10,12 +10,12 @@ import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends CrudRepository<Article, Integer> {
-
+    //find article by article ID
     Optional<Article> findByAid(Long aid);
-
+    //find article by article's poster
     List<Article> findByUser(User user);
-
+    //find all articles
     List<Article> findAll();
-
+    //delete article by article ID
     void deleteByAid(Long aid);
 }

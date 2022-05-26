@@ -18,9 +18,7 @@ public class UserSeviceImpl implements UserService{
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
     private static final String DEFAUIT_ROLE = "ROLE_USER";
-
 
     @Autowired
     public UserSeviceImpl(UserRepository userRepository, AuthorityRepository authorityRepository, BCryptPasswordEncoder bCryptPasswordEncoder){
@@ -28,7 +26,7 @@ public class UserSeviceImpl implements UserService{
         this.authorityRepository = authorityRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-
+    //save the new user
     @Override
     public User saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -37,6 +35,7 @@ public class UserSeviceImpl implements UserService{
         return userRepository.save(user);
     }
 
+    //Find the user by username
     @Override
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);

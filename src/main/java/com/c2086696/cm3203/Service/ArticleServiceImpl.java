@@ -21,29 +21,34 @@ public class ArticleServiceImpl implements ArticleService{
         this.articleRepository = articleRepository;
     }
 
+    //save the new article
     @Override
     public void saveArticle(Article article) {
         articleRepository.save(article);
     }
 
+    //find article by article ID
     @Override
     public Optional<Article> findByAid(Long aid) {
         return articleRepository.findByAid(aid);
     }
 
+    //find article by article's poster
     @Override
     public List<Article> findByUser(User user) {
         return articleRepository.findByUser(user);
     }
 
+    //find all articles
+    @Override
+    public List<Article> findAll() {
+        return articleRepository.findAll();
+    }
+
+    //delete article by article ID
     @Override
     public void deleteByAid(Long aid) {
 
         articleRepository.deleteByAid(aid);
-    }
-
-    @Override
-    public List<Article> findAll() {
-        return articleRepository.findAll();
     }
 }

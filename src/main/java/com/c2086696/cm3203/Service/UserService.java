@@ -5,10 +5,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
-    //add new user
+    //save the new user
     User saveUser(User user);
-
-    //had this name exist?
+    //Find the user by username
     Optional<User> findByUsername(String username);
 
 }
