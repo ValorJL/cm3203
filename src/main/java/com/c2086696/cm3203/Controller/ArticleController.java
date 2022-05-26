@@ -24,7 +24,6 @@ public class ArticleController {
         this.userService = userService;
     }
 
-    //For show the appearance of the page
     @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
     public String newArticle(Model model, HttpServletRequest request) {
         String str = (String) request.getSession().getAttribute("loginName");
@@ -41,7 +40,6 @@ public class ArticleController {
         articleService.saveArticle(article);
         return "redirect:/welcome";
     }
-
 
     @RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
     public String getArticleWithId(@PathVariable Integer aid,Model model) {
@@ -66,9 +64,8 @@ public class ArticleController {
         User user = userService.findByName(str).get();
         if(articleService.findByAid(aid).getName().equals(user)){
             articleService.deleteByAid(aid);
-            return "redirect:/management";
         }
-        return null;
+        return "redirect:/management";
     }
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
