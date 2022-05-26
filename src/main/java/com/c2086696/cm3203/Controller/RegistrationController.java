@@ -27,12 +27,14 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String createNewUser(@ModelAttribute("user") User user) {
+    public String createNewUser(@ModelAttribute("user") User user,Model model) {
         //If this name exists, return null
         if (!userService.findByName(user.getName()).isEmpty()) {
-            return null;
+            model.addAttribute("unsuccessMessage", "This username has already been registered");
+            return "/registration";
         }
         userService.saveUser(user);
-        return "redirect:/login";
+        model.addAttribute("successMessage", "The user has been registered successfully");
+        return "/registration";
     }
 }

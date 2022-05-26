@@ -35,7 +35,8 @@ public class LoginController {
             request.getSession().setAttribute("loginName",username);
             return "redirect:/welcome";
         } else {
-            return "redirect:/login";
+            model.addAttribute("unsuccessMessage", "Incorrect username or password");
+            return "/login";
         }
     }
 }

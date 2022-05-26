@@ -7,6 +7,7 @@
 </head>
 <body>
 <div class="container">
+    <div class="alert alert-info" th:if="${unsuccessMessage}" th:utext="${unsuccessMessage}"></div>
     <form class="form-sign" method="post" action="/loginVerify">
         <h2>Please sign in</h2>
         <p>
