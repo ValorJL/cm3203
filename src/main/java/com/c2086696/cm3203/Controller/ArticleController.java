@@ -25,7 +25,6 @@ public class ArticleController {
         this.userService = userService;
     }
 
-
     @RequestMapping(value = "/newArticle", method = RequestMethod.GET)
     public String newArticle(Principal principal, Model model) {
         Optional<User> user = userService.findByUsername(principal.getName());
@@ -34,16 +33,12 @@ public class ArticleController {
             article.setUser(user.get());
             model.addAttribute("article", article);
             return "newArticle";
-
         } else {
             return null;
         }
     }
-
     @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
-    public String createNewPost(Article article,
-                                BindingResult bindingResult) {
-
+    public String createNewPost(Article article, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "newArticle";
         } else {

@@ -36,7 +36,6 @@
                     <td th:text="${a.getTitle()}"></td>
                     <td th:text="${a.getBody().substring(0,8)}+'...'"></td>
                     <td>
-
                         <form th:action="@{/delete}" method="POST">
                             <input th:type="hidden" th:value="${a.getAid()}" name="aid">
                             <input type="submit" value="Delete"/>

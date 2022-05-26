@@ -26,11 +26,8 @@ public class RegistrationController {
         return "registration";
     }
 
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String createNewUser(User user,
-                                BindingResult bindingResult,
-                                Model model) {
+    public String createNewUser(User user, BindingResult bindingResult, Model model) {
         if (userService.findByUsername(user.getUsername()).isPresent()) {
             bindingResult
                     .rejectValue("username", "error.user",
@@ -38,7 +35,6 @@ public class RegistrationController {
         }
         if (!bindingResult.hasErrors()) {
             // Registration successful, save user
-            // Set user role to USER and set it as active
             userService.saveUser(user);
             model.addAttribute("successMessage", "User has been registered successfully");
             model.addAttribute("user", new User());
