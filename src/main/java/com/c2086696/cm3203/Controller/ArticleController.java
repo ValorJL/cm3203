@@ -32,19 +32,15 @@ public class ArticleController {
             Article article = new Article();
             article.setUser(user.get());
             model.addAttribute("article", article);
-            return "newArticle";
-        } else {
-            return null;
         }
+        return "newArticle";
     }
     @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
     public String createNewPost(Article article, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "newArticle";
-        } else {
+        if (!bindingResult.hasErrors()) {
             articleService.saveArticle(article);
-            return "redirect:/welcome";
         }
+        return "redirect:/welcome";
     }
 
     @RequestMapping(value = "/article/{aid}", method = RequestMethod.GET)
@@ -54,24 +50,18 @@ public class ArticleController {
             Article article = optionalArticle.get();
             model.addAttribute("article",article);
             model.addAttribute("newLineChar", '\n');
-            return "article";
-        } else {
-            return null;
         }
+        return "article";
     }
 
     @RequestMapping(value = "/management", method = RequestMethod.GET)
     public String management(Principal principal, Model model){
-
         Optional<User> user = userService.findByUsername(principal.getName());
         if (user.isPresent()) {
             List<Article> articleList = articleService.findByUser(user.get());
             model.addAttribute("articleList",articleList);
-            return"management";
-
-        } else {
-            return null;
         }
+        return"management";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -80,10 +70,8 @@ public class ArticleController {
         Optional<User> user = userService.findByUsername(principal.getName());
         if (user.isPresent() && articleService.findByAid(aidLong).get().getUser().equals(user.get())) {
             articleService.deleteByAid(aidLong);
-            return "redirect:/welcome";
-        } else {
-            return null;
         }
+        return "redirect:/welcome";
     }
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
