@@ -71,7 +71,7 @@ public class ArticleController {
         if (user.isPresent() && articleService.findByAid(aidLong).get().getUser().equals(user.get())) {
             articleService.deleteByAid(aidLong);
         }
-        return "redirect:/welcome";
+        return "redirect:/management";
     }
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
