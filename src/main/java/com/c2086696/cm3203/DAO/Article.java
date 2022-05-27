@@ -21,7 +21,6 @@ public class Article {
     @Column(name = "body",columnDefinition = "TEXT")
     private String body;
 
-
     public Integer getAid() {
         return aid;
     }
@@ -59,7 +58,7 @@ public class Article {
         return "Article{" +
                 "aid=" + aid +
                 ", title='" + title + '\'' +
-                ", name=" + name +
+//                ", name=" + name +
                 ", body='" + body + '\'' +
                 '}';
     }

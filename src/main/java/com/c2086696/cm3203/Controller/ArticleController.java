@@ -34,7 +34,6 @@ public class ArticleController {
         return "/newArticle";
     }
 
-
     @RequestMapping(value = "/newArticle", method = RequestMethod.POST)
     public String createNewArticle(@ModelAttribute("article") Article article) {
         articleService.saveArticle(article);

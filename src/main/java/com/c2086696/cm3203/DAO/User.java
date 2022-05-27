@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class User implements Serializable{
     @Id
@@ -48,7 +48,7 @@ public class User implements Serializable{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", listArticles=" + listArticles +
+//                ", listArticles=" + listArticles +
                 '}';
     }
 
