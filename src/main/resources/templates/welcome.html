@@ -32,7 +32,8 @@
             <tr th:each="a:${articleList}">
                 <td th:text="${a.getUser().getUsername()}"></td>
                 <td th:text="${a.getTitle()}"></td>
-                <td th:text="${a.getBody().substring(0,8)}+'...'"></td>
+                <td th:if="${a.getBody().length()>7}" th:text="${a.getBody().substring(0,8)}+'...'"></td>
+                <td th:if="${a.getBody().length()<=7}" th:text="${a.getBody()}"></td>
                 <td>
                     <a th:href="@{/article/{aid}(aid=${a.aid})}">Full text</a>
                 </td>
