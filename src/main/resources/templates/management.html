@@ -32,8 +32,8 @@
                 <tr th:each="a:${articleList}">
                     <td th:text="${a.getUser().getUsername()}"></td>
                     <td th:text="${a.getTitle()}"></td>
-                    <td th:if="${a.getBody().length()>7}" th:text="${a.getBody().substring(0,8)}+'...'"></td>
                     <td th:if="${a.getBody().length()<=7}" th:text="${a.getBody()}"></td>
+                    <td th:if="${a.getBody().length()>7}" th:text="${a.getBody().substring(0,8)}+'...'"></td>
                     <td>
                         <form th:action="@{/delete}" method="POST">
                             <input th:type="hidden" th:value="${a.getAid()}" name="aid">
