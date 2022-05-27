@@ -7,18 +7,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 
-
 @Entity
 @Table(name = "users")
 @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", initialValue = 1, allocationSize = 1)
 public class User implements UserDetails {
 
-
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "user_seq_gen")
     @Column(name = "id")
     private Long id;
-
 
     @Column(name = "username",nullable = false,unique = true)
     private String username;
@@ -32,7 +29,6 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private Collection<Article> articles;
-
 
     @Override
     public String getUsername() {

@@ -24,12 +24,12 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
         return encodedValues;
     }
 
+    //Replace
     private String cleanXSS(String valueP) {
-        // You'll need to remove the spaces from the html entities below
         String value = valueP.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-        value = value.replaceAll("<", "& lt;").replaceAll(">", "& gt;");
-        value = value.replaceAll("\\(", "& #40;").replaceAll("\\)", "& #41;");
-        value = value.replaceAll("'", "& #39;");
+        value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+        value = value.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");
+        value = value.replaceAll("'", "&#39;");
         value = value.replaceAll("eval\\((.*)\\)", "");
         value = value.replaceAll("[\\\"\\\'][\\s]*javascript:(.*)[\\\"\\\']", "\"\"");
         value = value.replaceAll("script", "");

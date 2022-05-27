@@ -21,7 +21,6 @@ public class Authority implements GrantedAuthority {
     @ManyToMany(mappedBy = "authorities", cascade = CascadeType.ALL)
     private Collection<User> users;
 
-
     @Override
     public String getAuthority() {
         return authority;
